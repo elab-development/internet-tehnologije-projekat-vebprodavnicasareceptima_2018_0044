@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('recepti', function (Blueprint $table) {
-            $table->foreignId('kategorija_id')->constrained('kategorije');
-            $table->foreignId('kuhinja_id')->constrained('kuhinje');
+            $table->foreignId('kategorija_id')->constrained('kategorije')->onDelete('cascade');
+            $table->foreignId('kuhinja_id')->constrained('kuhinje')->onDelete('cascade');
         });
     }
 

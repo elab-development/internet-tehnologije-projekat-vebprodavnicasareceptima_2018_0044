@@ -19,8 +19,6 @@ return new class extends Migration
             $table -> integer('broj_porcija');
             $table -> text('nacin_pripreme');
             $table->enum('vrsta_obroka', ['dorucak', 'brunc','rucak', 'vecera', 'uzina', 'desert']);
-            //$table->foreignId('kategorija_id')->constrained('kategorije');
-            //$table->foreignId('kuhinja_id')->constrained('kuhinje');
             $table->timestamps();
 
         });

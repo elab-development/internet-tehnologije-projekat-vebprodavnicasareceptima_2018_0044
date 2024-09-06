@@ -9,6 +9,7 @@ class Sastojak extends Model
 {
     use HasFactory;
     protected $fillable = ['naziv'];
+    protected $table = 'sastojci';
 
     public function recepti()
     {

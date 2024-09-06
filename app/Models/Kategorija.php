@@ -10,6 +10,7 @@ class Kategorija extends Model
     use HasFactory;
 
     protected $fillable = ['naziv'];
+    protected $table = 'kategorije';
 
     public function recepti()
     {

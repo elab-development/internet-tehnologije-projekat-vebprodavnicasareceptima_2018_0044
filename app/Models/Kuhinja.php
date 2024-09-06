@@ -10,6 +10,7 @@ class Kuhinja extends Model
     use HasFactory;
 
     protected $fillable = ['naziv'];
+    protected $table = 'kuhinje';
 
     public function recepti()
     {

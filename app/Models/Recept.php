@@ -11,6 +11,7 @@ class Recept extends Model
 
     protected $fillable = ['naziv', 'opis','vreme_pripreme', 'broj_porcija', 'nacin_pripreme','vrsta_obroka',
      'kategorija_id', 'kuhinja_id'];
+     protected $table = 'recepti';
 
     public function kategorija()
     {

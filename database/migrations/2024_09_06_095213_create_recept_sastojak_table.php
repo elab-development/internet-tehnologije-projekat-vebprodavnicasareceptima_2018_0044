@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('recept_sastojak', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('recept_id')->constrained('recepti');
-            $table->foreignId('sastojak_id')->constrained('sastojci');
+            $table->foreignId('recept_id')->constrained('recepti')->onDelete('cascade');
+            $table->foreignId('sastojak_id')->constrained('sastojci')->onDelete('cascade');
             $table->integer('kolicina')->nullable();
             $table->string('merna_jedinica')->nullable();
             $table->timestamps();
