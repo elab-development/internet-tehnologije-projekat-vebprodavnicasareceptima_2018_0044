@@ -9,7 +9,7 @@ use App\Http\Controllers\SastojakController;
 use App\Http\Controllers\UserController;
 use App\Models\Kategorija;
 
-Route::apiResource('kategorije', KategorijaController::class);
+//Route::apiResource('kategorije', KategorijaController::class);
 Route::apiResource('kuhinje', KuhinjaController::class);
 Route::apiResource('recepti', ReceptController::class);
 Route::apiResource('sastojci', SastojakController::class);
@@ -20,5 +20,12 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('recepti/{recept}/sastojci', [ReceptController::class, 'getSastojci']);
 Route::get('recepti/filter', [ReceptController::class, 'filter']);
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('recepti', ReceptController::class);
+    Route::apiResource('kategorije', KategorijaController::class);
+    // Dodaj CRUD rute koje želiš zaštititi
+});
 
-
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::apiResource('kategorije', KategorijaController::class);
+});
