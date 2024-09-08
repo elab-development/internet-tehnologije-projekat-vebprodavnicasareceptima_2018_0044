@@ -23,4 +23,8 @@ class Recept extends Model
        return $this->belongsTo(Kuhinja::class);
    }
 
+    public function sastojci()
+    {
+        return $this->belongsToMany(Sastojak::class, 'recept_sastojak')->withPivot('kolicina');
+    }
 }

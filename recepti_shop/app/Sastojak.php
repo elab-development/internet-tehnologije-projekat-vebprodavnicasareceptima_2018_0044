@@ -13,5 +13,9 @@ class Sastojak extends Model
     protected $fillable = ['naziv'];
     protected $table = 'sastojci';
 
+    public function recepti()
+    {
+        return $this->belongsToMany(Recept::class, 'recept_sastojak')->withPivot('kolicina');
+    }
   
 }
