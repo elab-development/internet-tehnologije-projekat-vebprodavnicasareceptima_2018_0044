@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('recept_sastojak', function (Blueprint $table) {
 
-                $table->decimal('kolicina',8,4)->nullable()->change();            
+                $table->decimal('kolicina',8,3)->nullable()->change();            
         });
     }
 
