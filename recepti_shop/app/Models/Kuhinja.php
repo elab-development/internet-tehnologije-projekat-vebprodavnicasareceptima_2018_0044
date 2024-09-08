@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kategorija extends Model
+class Kuhinja extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['naziv'];
-    protected $table = 'kategorije';
+    protected $table = 'kuhinje';
 
     public function recepti()
     {

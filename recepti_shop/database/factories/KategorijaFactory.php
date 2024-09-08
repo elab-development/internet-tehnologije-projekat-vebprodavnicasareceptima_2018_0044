@@ -17,7 +17,7 @@ class KategorijaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'naziv'=> $this->faker->randomElement(['Predjela', 'Glavna jela', 'Deserti', 'Salate', 'Supe i čorbe','Testa','15. minutni obroci','30.minuta obrok']),
         ];
     }
 }

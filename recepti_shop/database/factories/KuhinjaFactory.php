@@ -17,7 +17,7 @@ class KuhinjaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'naziv'=> $this->faker->country
         ];
     }
 }

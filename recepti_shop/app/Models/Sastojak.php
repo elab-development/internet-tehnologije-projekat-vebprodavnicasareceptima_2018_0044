@@ -1,19 +1,21 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kuhinja extends Model
+class Sastojak extends Model
 {
     use HasFactory;
 
+    use HasFactory;
     protected $fillable = ['naziv'];
-    protected $table = 'kuhinje';
+    protected $table = 'sastojci';
 
     public function recepti()
     {
-        return $this->hasMany(Recept::class);
+        return $this->belongsToMany(Recept::class, 'recept_sastojak')->withPivot('kolicina');
     }
+  
 }

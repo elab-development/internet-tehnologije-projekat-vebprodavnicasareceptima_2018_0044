@@ -17,7 +17,8 @@ class SastojakFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'naziv' => $this->faker->word, 
+            'merna_jedinica' => $this->faker->randomElement(['kg', 'g', 'l', 'ml', 'kom'])
         ];
     }
 }
