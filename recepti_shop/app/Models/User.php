@@ -42,5 +42,16 @@ use Laravel\Sanctum\HasApiTokens;
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+
+        public function isAdmin()
+        {
+            return $this->role === 'admin';
+        }
+
+        public function isUser()
+        {
+            return $this->role === 'user';
+        }
+
     }
 
