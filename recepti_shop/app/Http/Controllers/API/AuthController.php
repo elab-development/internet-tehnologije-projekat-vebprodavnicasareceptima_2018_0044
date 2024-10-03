@@ -27,6 +27,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user'
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -48,9 +49,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        //$user = $request->user(); //?? je l radi
-        //$user->tokens()->delete();
-        Auth::user()->tokens()->delete();
+        $user = $request->user(); //?? je l radi
+        $user->tokens()->delete();
+        //Auth::user()->tokens()->delete();
         return response()->json(['message' => 'Korisnik se odjavio.']);
     }
 

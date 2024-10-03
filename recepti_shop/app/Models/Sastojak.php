@@ -18,4 +18,8 @@ class Sastojak extends Model
         return $this->belongsToMany(Recept::class, 'recept_sastojak')->withPivot('kolicina');
     }
   
+    public function korpe()
+    {
+        return $this->belongsToMany(Korpa::class, 'korpa_sastojak')->withPivot('kolicina');
+    }
 }

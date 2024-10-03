@@ -53,5 +53,17 @@ use Laravel\Sanctum\HasApiTokens;
             return $this->role === 'user';
         }
 
+        protected static function booted()
+        {
+            static::created(function ($user) {
+                Korpa::create(['user_id' => $user->id]);
+            });
+        }
+    
+        public function korpa()
+        {
+            return $this->hasOne(Korpa::class);
+        }
+
     }
 

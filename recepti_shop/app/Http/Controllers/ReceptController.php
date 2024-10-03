@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ReceptResource;
+use App\Models\Korpa;
 use App\Models\Recept;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReceptController extends Controller
 {
@@ -90,5 +92,14 @@ class ReceptController extends Controller
         $recepti = $query->with(['kategorija', 'kuhinja'])->paginate(10);
         $recepti = $query->paginate(10);
         return ReceptResource::collection($recepti);
+    }
+
+    public function dodajReceptUKorpu($receptId)
+    {
+        $korpa = Korpa::firstOrCreate(['user_id' => Auth::id()]);
+
+        $korpa->dodajReceptUKorpu($receptId);
+
+        return response()->json(['message' => 'Recept je dodat u korpu.'], 200);
     }
 }

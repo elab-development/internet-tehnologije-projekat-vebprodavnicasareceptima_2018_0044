@@ -27,4 +27,5 @@ class Recept extends Model
     {
         return $this->belongsToMany(Sastojak::class, 'recept_sastojak')->withPivot('kolicina');
     }
+
 }
