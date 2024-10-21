@@ -19,22 +19,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('recepti/filter', [ReceptController::class, 'filter']);
 
 Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
-    
-});
 
-Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
+});
 
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
     Route::apiResource('recepti', ReceptController::class);
-    Route::post('/sastojci', [SastojakController::class, 'store']);
-    Route::put('/kuhinje/{id}', [KuhinjaController::class, 'update']);
+    Route::put('kuhinje/{id}', [KuhinjaController::class, 'update']);
 });
-
-Route::get('recepti/filter', [ReceptController::class, 'filter']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -42,29 +38,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']);
-    
+    Route::post('logout', [AuthController::class, 'logout']);
 });
-
 
 Route::middleware('auth:sanctum', 'role:user')->group(function () {
-    Route::get('/korpa', [KorpaController::class, 'prikaziKorpu']);
-    Route::post('/korpa/dodaj', [KorpaController::class, 'dodajUkorpu']);
-    Route::put('/korpa/azuriraj/{sastojakId}', [KorpaController::class, 'azurirajSastojak']);
-    Route::delete('/korpa/obrisi/{sastojakId}', [KorpaController::class, 'obrisiSastojak']);
-    Route::delete('/korpa/isprazni', [KorpaController::class, 'isprazniKorpu']);
-    Route::post('/korpa/recept/{receptId}', [ReceptController::class, 'dodajReceptUKorpu'])
-     ->name('korpa.dodajRecept'); //ovo testiram /korpa/recept/{receptId}
+    Route::get('korpa', [KorpaController::class, 'prikaziKorpu']);
+    Route::post('korpa/dodaj', [KorpaController::class, 'dodajUkorpu']);
+    Route::put('korpa/azuriraj/{sastojakId}', [KorpaController::class, 'azurirajSastojak']);
+    Route::delete('korpa/obrisi/{sastojakId}', [KorpaController::class, 'obrisiSastojak']);
+    Route::delete('korpa/isprazni', [KorpaController::class, 'isprazniKorpu']);
+    Route::post('korpa/recept/{receptId}', [ReceptController::class, 'dodajReceptUKorpu'])
+     ->name('korpa.dodajRecept');
 });
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/korpa', [KorpaController::class, 'prikaziKorpu']);
-//     Route::post('/korpa/dodaj', [KorpaController::class, 'dodajUkorpu']);
-//     Route::put('/korpa/azuriraj/{sastojakId}', [KorpaController::class, 'azurirajSastojak']);
-//     Route::delete('/korpa/obrisi/{sastojakId}', [KorpaController::class, 'obrisiSastojak']);
-//     Route::delete('/korpa/isprazni', [KorpaController::class, 'isprazniKorpu']);
-//     Route::post('/korpa/recept/{receptId}', [ReceptController::class, 'dodajReceptUKorpu'])
-//      ->name('korpa.dodajRecept'); //ovo testiram /korpa/recept/{receptId}
-// });
 
 
 

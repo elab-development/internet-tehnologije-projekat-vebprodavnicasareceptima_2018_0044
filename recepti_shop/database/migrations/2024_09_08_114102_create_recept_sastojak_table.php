@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('recept_sastojak', function (Blueprint $table) {
-            $table->id();
+            //$table->id(); //da li mi treba sopstveni id, ne treba slozen je al kako ??
             $table->foreignId('recept_id')->constrained('recepti')->onDelete('cascade');
             $table->foreignId('sastojak_id')->constrained('sastojci')->onDelete('cascade');
             $table->integer('kolicina')->nullable();
+            $table->primary(['recept_id', 'sastojak_id']);
             $table->timestamps();
         });
     }

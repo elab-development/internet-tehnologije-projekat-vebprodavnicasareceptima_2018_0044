@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Kategorija as AppKategorija;
 use Illuminate\Database\Seeder;
 use App\Models\Kategorija;
+use App\Models\Korpa;
 use App\Models\Kuhinja;
 use App\Models\Recept;
 use App\Models\Sastojak;
@@ -27,8 +28,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::truncate();
+        //rucno iskljucujem kljuceve jer se javlja truncate greska sa spoljnim kljucevima
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('korpa_sastojak')->truncate();
+        Korpa::truncate();
+        User::truncate();
         DB::table('recept_sastojak')->truncate();
         Recept::truncate();
         Kategorija::truncate();

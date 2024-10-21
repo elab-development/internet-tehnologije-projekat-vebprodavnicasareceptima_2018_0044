@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('korpa_sastojak', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
             $table->foreignId('korpa_id')->constrained('korpe')->onDelete('cascade');
             $table->foreignId('sastojak_id')->constrained('sastojci')->onDelete('cascade');
-            $table->integer('kolicina');
+            $table->integer('kolicina'); //mozda double?
+            $table->primary(['korpa_id', 'sastojak_id']);
             $table->timestamps();
         });
     }
