@@ -15,7 +15,7 @@ return new class extends Migration
             //$table->id();
             $table->foreignId('korpa_id')->constrained('korpe')->onDelete('cascade');
             $table->foreignId('sastojak_id')->constrained('sastojci')->onDelete('cascade');
-            $table->integer('kolicina'); //mozda double?
+            $table->integer('kolicina');
             $table->primary(['korpa_id', 'sastojak_id']);
             $table->timestamps();
         });
