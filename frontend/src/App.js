@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import LoginPage from './components/LoginPage';
+import { useState } from 'react';
+import RegisterPage from './components/RegisterPage';
+import {BrowserRouter, Routes,Route} from 'react-router-dom';
+import NavBar from './components/NavBar';
 
 function App() {
+  const [token,setToken] = useState();
+
+  function addToken(token){
+    setToken(token);
+  }
+  function removeToken() {
+    setToken(null);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter className="App">
+      <Routes>
+        <Route path='/login' element={<LoginPage addToken={addToken} />}    />
+        <Route path='/register' element={<RegisterPage/>}    />
+        <Route path='/' element={<NavBar  token={token} removeToken={removeToken}/>}  />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
