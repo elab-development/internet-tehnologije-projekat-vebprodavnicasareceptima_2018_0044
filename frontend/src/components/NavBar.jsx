@@ -1,7 +1,19 @@
 import React,{useState} from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { BiSearch } from "react-icons/bi";
+import { PiShoppingCartFill } from "react-icons/pi";
 
-const NavBar = ({token,removeToken}) => {
+const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
+    const navigate = useNavigate();
+    const handleRegisterClick = () => {
+        navigate('/register');
+    };  
+    const handleSearchClick = () => {
+        navigate('/register'); //paginacija i filter recepata
+    };  
+
+
     function handleLogout(){        
         let config = {
             method: 'post',
@@ -15,11 +27,16 @@ const NavBar = ({token,removeToken}) => {
           .then((response) => {
             console.log(JSON.stringify(response.data));
             window.sessionStorage.setItem("auth_token",null);
+            window.sessionStorage.setItem("role",null);
+            window.sessionStorage.setItem("username",null);
             removeToken();
+            removeUserRole();
           })
           .catch((error) => {
             console.log(error);
           });
+        
+        
     }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -29,24 +46,52 @@ const NavBar = ({token,removeToken}) => {
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+           {/* <ul className="navbar-nav d-flex w-100 justify-content-between align-items-center">*/}
+            <ul className="navbar-nav me-auto">
                 <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">Recepti</a>
                 </li>
+            </ul>
+                <form className="d-flex input-group w-auto mx-auto">
+                <input
+                    type="search"
+                    className="form-control rounded"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="search-addon"
+                />
+                <span className="input-group-text border-0" id="search-addon" style={{ cursor: 'pointer' }} onMouseEnter={(e) => {
+            e.target.style.backgroundColor = '#0056b3'}} onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent'}}>
+                  <BiSearch onClick={handleSearchClick} style={{ color: 'black', fontSize: '1.2rem' }}/>
+                </span>
+                </form>  
+
                  {token==null ? (
-                    <li className="nav-item">
-                     <a className="nav-link" href="/login">Login</a>
+                    <ul className="navbar-nav ms-auto"><li className="nav-item">
+                     <a className="nav-link" href="/login">Prijavi se</a>
                      </li>
+                     <li className="nav-item">
+                     <button data-mdb-ripple-init type="button" className="btn btn-primary ms-2" onClick={handleRegisterClick}>
+                         Registruj se
+                     </button>
+                    </li> 
+                    </ul>
 
                  ) : (
-                    <li className="nav-item">
-                    <a className="nav-link" href="#" onClick={handleLogout}>Logout</a>
-                    </li>
-                )}   
-                <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">nesto disabled</a>
-                </li>
-            </ul>
+                   <ul className="navbar-nav ms-auto">
+                  {window.sessionStorage.getItem("role") !== "admin" && (
+                   <span className="input-group-text border-0" id="search-addon" style={{ cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#0056b3'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+                    <PiShoppingCartFill onClick={handleSearchClick} style={{ color: 'black', fontSize: '1.2rem' }}/>
+                   </span>
+                  )}
+                   <li className="nav-item ">
+                        <a className="nav-link" href="#" onClick={handleLogout}>Odjavi se</a>
+                    </li>                        
+                    </ul> 
+                )} 
+                
+            {/*</ul> */}
             </div>
         </div>
     </nav>

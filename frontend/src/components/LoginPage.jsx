@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = ({addToken}) => {    
+const LoginPage = ({addToken,addUserRole}) => {    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -18,8 +18,11 @@ const LoginPage = ({addToken}) => {
         console.log(response.data);
         if(response.data.success==true){
             window.sessionStorage.setItem("auth_token",response.data.access_token);
+            window.sessionStorage.setItem("username",response.data.username);
+            window.sessionStorage.setItem("role",response.data.role);
         }
         addToken(response.data.access_token);
+        addUserRole(response.data.role);
         navigate("/");
       })
       .catch((error)=>{
