@@ -30,7 +30,6 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
     Route::apiResource('recepti', ReceptController::class)->except(['show']);
-    //Route::resource('recepti', ReceptController::class)->except(['show']);
     Route::put('kuhinje/{id}', [KuhinjaController::class, 'update']);
 });
 

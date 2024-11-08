@@ -1,0 +1,64 @@
+.explore-kat{
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+}
+
+.explore-kat h1{
+    color:  rgb(16, 135, 92);
+    font-weight: 500;
+}
+
+.explore-kat-text{
+    max-width: 60%;
+    columns: #808080;
+}
+
+.explore-kat-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    text-align: center;
+    margin: 20px 0px;
+    overflow-x: scroll;
+}
+
+.explore-kat-list::-webkit-scrollbar{
+    display: none;
+}
+.explore-kat-list-item{
+    width: 7.5vw;
+    min-width: 80px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.2s;
+    align-items: center;
+    
+}
+
+.explore-kat-list-item p{
+    margin-top: 10px;
+    color:rgb(16, 135, 92);
+    font-size: max(1.3vw,16px);
+    cursor: pointer;
+    margin-left: 2.5vw;
+}
+.explore-kat-list-item img{
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;         
+    text-align: center;       
+}
+
+.explore-kat hr{
+    margin: 10px 0px;
+    height: 4px;
+    background-color: #a7d7d2;
+    border: none;
+}
+
+.explore-kat-list-item .active{
+    border: 4px solid #1c7059;
+}
