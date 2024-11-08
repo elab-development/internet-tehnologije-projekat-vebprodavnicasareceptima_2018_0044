@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('recepti/filter', [ReceptController::class, 'filter']);
+Route::get('/recepti/{id}', [ReceptController::class, 'show']);
 
 Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
@@ -28,7 +29,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
-    Route::apiResource('recepti', ReceptController::class);
+    Route::apiResource('recepti', ReceptController::class)->except(['show']);
+    //Route::resource('recepti', ReceptController::class)->except(['show']);
     Route::put('kuhinje/{id}', [KuhinjaController::class, 'update']);
 });
 

@@ -1,12 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import LoginPage from './components/LoginPage';
+import LoginPage from './pages/LoginPage';
 import { useState } from 'react';
-import RegisterPage from './components/RegisterPage';
+import RegisterPage from './pages/RegisterPage';
 import {BrowserRouter, Routes,Route} from 'react-router-dom';
 import NavBar from './components/NavBar';
 import SastojakCard from './components/SastojakCard';
 import ReceptCard from './components/ReceptCard';
+import ReceptPage from './pages/ReceptPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   const [token,setToken] = useState();
@@ -26,11 +27,13 @@ function App() {
   }
   return (
     <BrowserRouter className="App">
+      <NavBar token={token} removeToken={removeToken} userRole={userRole} removeUserRole={removeUserRole}/>
       <Routes>
         <Route path='/login' element={<LoginPage addToken={addToken} addUserRole={addUserRole}/>}    />
         <Route path='/register' element={<RegisterPage/>}    />
-        <Route path='/' element={<><NavBar token={token} removeToken={removeToken} userRole={userRole} removeUserRole={removeUserRole} /><SastojakCard /> <ReceptCard/></>
-      }  />
+        <Route path="/recepti/:id" element={<ReceptPage />} />
+        {/* <Route path='/' element={<><NavBar token={token} removeToken={removeToken} userRole={userRole} removeUserRole={removeUserRole} /><SastojakCard /> <ReceptCard/></> }  />*/}
+        <Route path='/' element={<HomePage/>}  />
       </Routes>
     </BrowserRouter>
   );

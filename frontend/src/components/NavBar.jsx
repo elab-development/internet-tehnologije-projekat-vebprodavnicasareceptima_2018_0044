@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
+import './NavBar.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BiSearch } from "react-icons/bi";
 import { PiShoppingCartFill } from "react-icons/pi";
+import { assets } from '../assets/assets';
 
 const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
     const navigate = useNavigate();
@@ -12,7 +14,9 @@ const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
     const handleSearchClick = () => {
         navigate('/register'); //paginacija i filter recepata
     };  
-
+    const handleLogoClick = () => {
+      navigate('/');
+  };  
 
     function handleLogout(){        
         let config = {
@@ -41,7 +45,7 @@ const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-            <a className="navbar-brand" href="/">Korpa+</a>
+            <img src={assets.logo} alt="" className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}/>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
@@ -56,12 +60,12 @@ const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
                 <input
                     type="search"
                     className="form-control rounded"
-                    placeholder="Search"
+                    placeholder="Pretraži"
                     aria-label="Search"
                     aria-describedby="search-addon"
                 />
                 <span className="input-group-text border-0" id="search-addon" style={{ cursor: 'pointer' }} onMouseEnter={(e) => {
-            e.target.style.backgroundColor = '#0056b3'}} onMouseLeave={(e) => {
+            e.target.style.backgroundColor = '#05ad86'}} onMouseLeave={(e) => {
               e.target.style.backgroundColor = 'transparent'}}>
                   <BiSearch onClick={handleSearchClick} style={{ color: 'black', fontSize: '1.2rem' }}/>
                 </span>
@@ -81,7 +85,7 @@ const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
                  ) : (
                    <ul className="navbar-nav ms-auto">
                   {window.sessionStorage.getItem("role") !== "admin" && (
-                   <span className="input-group-text border-0" id="search-addon" style={{ cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#0056b3'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+                   <span className="input-group-text border-0" id="search-addon" style={{ cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#05ad86'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
                     <PiShoppingCartFill onClick={handleSearchClick} style={{ color: 'black', fontSize: '1.2rem' }}/>
                    </span>
                   )}
