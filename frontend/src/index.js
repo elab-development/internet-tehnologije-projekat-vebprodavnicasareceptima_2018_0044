@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
+import StoreContextProvider from './context/StoreContext';
 
 axios.defaults.baseURL = "http://127.0.0.1:8000";
 
@@ -11,7 +12,9 @@ axios.defaults.baseURL = "http://127.0.0.1:8000";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <StoreContextProvider>
+      <App />
+    </StoreContextProvider>
   </React.StrictMode>
 );
 

@@ -1,4 +1,6 @@
 import recept_1 from './recept_1.jpg'
+import recept_2 from './recept_2.jpg'
+import recept_3 from './recept_3.jpg'
 import logo from './logo.png'
 import header from './header.jpg'
 import kategorija_1 from './kategorija_1.jpg'
@@ -44,4 +46,36 @@ export const kategorija_list = [
         kat_name: "Testa",
         kat_image: kategorija_7
     }
+]
+
+export const recepti_list = [
+    {
+        id: 1,
+        kat_name: "Predjela",
+        recept_name:"Brusketi" ,
+        recept_desc: "Ovaj klasičan italijanski recept jednostavan je i osvežavajuć. Hrskavi tost sa svežim paradajzom i bosiljkom savršen je kao lagano predjelo.",
+        recept_time: "10 min",
+        recept_image: recept_2
+    },
+
+    {
+        id:2,
+        kat_name: "15. minutni obroci",
+        recept_name:"Avokado tost" ,
+        recept_desc: "Ovo lagano predjelo kombinuje kremasti avokado sa osvežavajućim limetom i blago pikantnim čilijem. Na vrh se dodaje sveze posirano jaje.",
+        recept_time: "13 min",
+        recept_image: recept_1
+    },
+    {
+        id:3,
+        kat_name: "Glavna jela",
+        recept_name:"Piletina sa povrćem" ,
+        recept_desc: "Ovo jelo je idealno za brzo i ukusno glavno jelo. Sočna piletina u kombinaciji sa povrćem daje bogat ukus, a priprema je jednostavna.",
+        recept_time: "45 min",
+        recept_image: recept_3
+    }
+]
+
+export const sastojci_list = [
+
 ]
