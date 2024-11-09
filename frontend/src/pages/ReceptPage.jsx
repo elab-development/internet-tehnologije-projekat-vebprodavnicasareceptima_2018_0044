@@ -1,29 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import './ReceptPage.css'
 import { useParams } from 'react-router-dom';
 import { assets } from '../assets/assets';
+import { StoreContext } from '../context/StoreContext';
 
 const ReceptPage = () => {
     const { id } = useParams(); // Uzima ID iz URL-a
     const [recept, setRecept] = useState(null);
-
-    const styles = {
-        container: {
-            display: 'flex',
-            alignItems: 'flex-start',  // Poravnanje na vrh
-            gap: 20+'px',               // Razmak između slike i sadržaja
-            padding: 20+'px'
-        },
-        image: {
-            width: '650px',            // Širina kvadrata
-            height: '450px',           // Visina kvadrata, jednaka širini da bi bio kvadrat
-            objectFit: 'cover',        // Crop-uje sliku da ispuni kvadrat
-            borderRadius: '5px'        // Zaobljeni uglovi
-        },
-        content: {
-            flex: 1                    // Sadržaj zauzima ostatak prostora
-        }
-      };
+    const{recepti_list} = useContext(StoreContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,18 +31,47 @@ const ReceptPage = () => {
     }
 
     return (
-        <div>
-            <div style={styles.container}>
-            <img src={assets.recept_1} alt='' style={styles.image} />
-            <h1>{recept.naziv}</h1>
-           {/*} <img src={recept.image} alt={recept.title} />   Kako da se dodaju pojedinacne slike dinamicki? Proslediti mozda ili u folderu ih nazvati po id-ju??*/}
-            <p>{recept.opis}</p>
-            {/*<h3>Sastojci:</h3>
-            <ul>
-                {recept.ingredients.map((sastojak, index) => (
-                    <li key={index}>{sastojak.name}</li>
-                ))}
-            </ul> */}
+        // <div>
+        //     <div>
+        //     <img src={assets.recept_1} alt='' />
+        //     <h1>{recept.naziv}</h1>
+        //    {/*} <img src={recept.image} alt={recept.title} />   Kako da se dodaju pojedinacne slike dinamicki? Proslediti mozda ili u folderu ih nazvati po id-ju??*/}
+        //     <p>{recept.opis}</p>
+        //     {/*<h3>Sastojci:</h3>
+        //     <ul>
+        //         {recept.ingredients.map((sastojak, index) => (
+        //             <li key={index}>{sastojak.name}</li>
+        //         ))}
+        //     </ul> */}
+        //     </div>
+        // </div>
+        <div className='recept-page'>
+            <div className="container-top flex">            
+                <div className="container-left ">
+                        <img src={recepti_list[id].recept_image} alt="" />                    
+                </div>
+                <div className="container-right">
+                    <h2>{recept.naziv}</h2>
+                    <div className="container-right-tags flex1">
+                        <button>#{recept.kategorija.naziv}</button>
+                        <button>#{recept.kuhinja.naziv}</button>
+                        <button>#{recept.vrsta_obroka}</button>
+                    </div>
+                    <div className="container-right-key-info">
+                        <h4>Vreme pripreme: {recept.vreme_pripreme}min</h4>
+                        <h4>Broj porcija: {recept.broj_porcija}</h4>
+                    </div>
+                    <p>{recept.opis}</p>
+                    <h3>Nacin pripreme:</h3>
+                    <p>{recept.nacin_pripreme}</p>
+                </div>
+            </div>
+            <div className="sastojci-list">
+                <div className="sastojci-list-title flex">
+                    <h3>Sastojci na dohvat ruke:</h3>
+                    <button>Dodaj sve</button>
+                </div>
+                {/* Sastojak displej */}
             </div>
         </div>
     );

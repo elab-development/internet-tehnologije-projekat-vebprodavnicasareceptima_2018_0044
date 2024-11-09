@@ -77,5 +77,11 @@ export const recepti_list = [
 ]
 
 export const sastojci_list = [
-
+    {
+        id:1,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    }
 ]

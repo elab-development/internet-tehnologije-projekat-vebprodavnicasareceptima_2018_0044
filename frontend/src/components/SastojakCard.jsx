@@ -61,7 +61,7 @@ const Card = ({id,name,unit, imgSrc, price,userRole}) => {
 
     <div className="card">
       <div className="card-img-container">
-            <img src= {imgSrc || "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"} className="card-img-item" alt={name} />
+            <img src= {imgSrc} className="card-img-item" alt={name} />
             {/* Autorizacija! */}
                {!cartItems[id]
               ? <TbShoppingCartPlus  className='add' onClick={()=>addToCart(id)}/>
@@ -74,9 +74,9 @@ const Card = ({id,name,unit, imgSrc, price,userRole}) => {
       </div>
       <div className="card-info">
         <div className="card-name">
-          <p>{name || "Sastojak"}</p>
+          <p>{name}</p>
         </div>
-        <p className="card-price">{price ||"150 "}RSD</p>
+        <p className="card-price">{price}RSD</p>
       </div>
     </div>
 

@@ -9,6 +9,7 @@ import ReceptCard from './components/ReceptCard';
 import ReceptPage from './pages/ReceptPage';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
+import CartPage from './pages/CartPage';
 
 function App() {
   const [token,setToken] = useState();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/recepti/:id" element={<ReceptPage />} />
         {/* <Route path='/' element={<><NavBar token={token} removeToken={removeToken} userRole={userRole} removeUserRole={removeUserRole} /><SastojakCard /> <ReceptCard/></> }  />*/}
         <Route path='/' element={<HomePage token={userRole}/>}  />
+        <Route path='/korpa' element={<CartPage/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

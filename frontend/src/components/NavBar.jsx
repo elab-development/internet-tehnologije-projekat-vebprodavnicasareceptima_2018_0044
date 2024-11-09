@@ -17,6 +17,9 @@ const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
     const handleLogoClick = () => {
       navigate('/');
   };  
+  const handleCartClick= () => {
+    navigate('/korpa');
+};  
 
     function handleLogout(){        
         let config = {
@@ -86,7 +89,7 @@ const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
                    <ul className="navbar-nav ms-auto">
                   {window.sessionStorage.getItem("role") !== "admin" && (
                    <span className="input-group-text border-0" id="search-addon" style={{ cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#05ad86'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
-                    <PiShoppingCartFill onClick={handleSearchClick} style={{ color: 'black', fontSize: '1.2rem' }}/>
+                    <PiShoppingCartFill onClick={handleCartClick} style={{ color: 'black', fontSize: '1.2rem' }}/>
                    </span>
                   )}
                    <li className="nav-item ">

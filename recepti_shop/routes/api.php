@@ -38,7 +38,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']); //mozda treba samo user jer admini nemaju korpu?
+    Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']); //msm da moze i guest
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
