@@ -41,7 +41,7 @@ const LoginPage = ({addToken,addUserRole}) => {
                   <form onSubmit={handleSubmit}>
   
                      <div className="mb-md-5 mt-md-4 pb-5">
-                        <h2 className="fw-bold mb-2 text-uppercase">Prijavite se</h2>
+                        <h2 className="fw-bold mb-2 text-uppercase text-white">Prijavite se</h2>
                         <p className="text-white-50 mb-5">Unesite Vaš imejl i šifru naloga.</p>
     
                         <div className="form-outline form-white mb-4">
@@ -52,7 +52,7 @@ const LoginPage = ({addToken,addUserRole}) => {
     
                         <div className="form-outline form-white mb-4">
                         <input type="password" id="typePasswordX" className="form-control form-control-lg" value={password}
-                            onChange={(e) => setPassword(e.target.value)} required/>
+                            onChange={(e) => setPassword(e.target.value)} required style={{ color: '#ffffff' }}/>
                         <label className="form-label label-custom" htmlFor="typePasswordX">Šifra</label>
                         </div>
     
@@ -67,7 +67,7 @@ const LoginPage = ({addToken,addUserRole}) => {
                   </form>
     
                      <div>
-                            <p className="mb-0">
+                            <p className="mb-0 text-white">
                             Nemate nalog? <a href="/register" className="text-white-50 fw-bold">Registrujte se</a>
                             </p>
                      </div>

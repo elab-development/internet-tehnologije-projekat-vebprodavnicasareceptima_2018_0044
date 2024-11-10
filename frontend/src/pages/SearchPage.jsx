@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './SearchPage.css'
 import { BiSearch } from "react-icons/bi";
 import SastojakDisplay from '../components/SastojakDisplay';
 import ReceptDisplay from '../components/ReceptDisplay';
 
 const SearchPage = () => {
+    const [listaRecepata, setlistaRecepata] = useState([]);
+    const [currentPage, setCurrentPage]=useState(1);
+    const [itemsPerPage,setItemsPerPage]=useState(10); 
+
+    const lastItemIndex = currentPage*itemsPerPage;
+    const firstitemIndex = lastItemIndex-itemsPerPage;
+    const thisPageItems = listaRecepata.slice(firstitemIndex,lastItemIndex)
+    const pages = []
+
+    for (let i = 1; i < listaRecepata.length/itemsPerPage; i++){
+        pages.push(i);       
+    }
+
   return (
     <div className='filter-page' id='filter-page'>       
         <div className="main-page">
@@ -109,10 +122,20 @@ const SearchPage = () => {
                         <ReceptDisplay/>
                         {/* Prikazuje ako je recept oznacen i trazen preko imena, nisam uradila api rutu za ovo isto ako je nesto od kategorija cekirano
                         ako trazim preko imena onda bih da odcekiram sve kategorije*/}
+                        {/*za paginaciju prosledi thisPageItems*/}
                     </div>
                     <div className="pagination-container">
                         <span>Prikazano {} od {} rezultata</span> {/*Da li zadrzati?*/}
-                        {/* Paginacija */}
+                        <nav className='pagination'>
+                            {
+                                pages.map((item,index)=>{
+                                    return(
+                                        <button onClick={()=> setCurrentPage(item)} key={index} className='pagination-btn'>{item}</button>
+                                    )
+
+                                })
+                            }
+                        </nav>
                     </div>
                 </div>
             </div>

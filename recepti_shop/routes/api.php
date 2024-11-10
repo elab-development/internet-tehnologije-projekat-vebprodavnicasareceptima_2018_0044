@@ -21,7 +21,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('recepti/filter', [ReceptController::class, 'filter']);
 Route::get('/recepti/{id}', [ReceptController::class, 'show']);
+Route::get('/recepti', [ReceptController::class, 'index']);
 Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']);
+Route::get('/recept/pretraga', [ReceptController::class, 'pretraziPoNazivu']);
+Route::get('/sastojak/pretraga', [SastojakController::class, 'pretraziPoNazivu']);
+
 
 Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
@@ -30,7 +34,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
-    Route::apiResource('recepti', ReceptController::class)->except(['show']);
+    Route::apiResource('recepti', ReceptController::class)->except(['show','index']);
     Route::put('kuhinje/{id}', [KuhinjaController::class, 'update']);
 });
 

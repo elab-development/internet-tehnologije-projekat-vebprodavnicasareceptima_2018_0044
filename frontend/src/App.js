@@ -34,7 +34,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<LoginPage addToken={addToken} addUserRole={addUserRole}/>}    />
         <Route path='/register' element={<RegisterPage/>}    />
-        <Route path="/recepti/:id" element={<ReceptPage />} />
+        <Route path="/recepti/:id" element={<ReceptPage userRole={userRole} />} />
         {/* <Route path='/' element={<><NavBar token={token} removeToken={removeToken} userRole={userRole} removeUserRole={removeUserRole} /><SastojakCard /> <ReceptCard/></> }  />*/}
         <Route path='/' element={<HomePage token={userRole}/>}  />
         <Route path='/korpa' element={<CartPage/>}/>

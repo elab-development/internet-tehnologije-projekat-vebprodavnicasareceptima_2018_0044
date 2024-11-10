@@ -16,6 +16,11 @@
   margin: auto;
 }
 
+.form-control.form-control-lg {
+  color: #ffffff;
+  
+}
+
 @keyframes fadeIn{
   0%{
     opacity: 0;

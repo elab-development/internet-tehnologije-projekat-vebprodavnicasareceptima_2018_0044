@@ -7,19 +7,26 @@ import { PiShoppingCartFill } from "react-icons/pi";
 import { assets } from '../assets/assets';
 
 const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
-    const navigate = useNavigate();
+    
+  const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState('');
+
     const handleRegisterClick = () => {
         navigate('/register');
     };  
-    const handleSearchClick = () => {
-        navigate('/register'); //paginacija i filter recepata
-    };  
     const handleLogoClick = () => {
       navigate('/');
-  };  
-  const handleCartClick= () => {
-    navigate('/korpa');
-};  
+    };  
+    const handleCartClick= () => {
+      navigate('/korpa');
+    };  
+    
+    const handleSearchClick = () => {
+      if (searchQuery.trim()) {
+        navigate(`/filter?naziv=${searchQuery}`);
+        setSearchQuery('');
+    }
+    };  
 
     function handleLogout(){        
         let config = {
@@ -56,21 +63,28 @@ const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
            {/* <ul className="navbar-nav d-flex w-100 justify-content-between align-items-center">*/}
             <ul className="navbar-nav me-auto">
                 <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Recepti</a>
+                <a className="nav-link active" aria-current="page" href="/filter">Recepti</a>
                 </li>
+                {token!=null && window.sessionStorage.getItem("role") === "admin" && (
+                  <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="/filter">Admin</a>
+                  </li>
+                )}
             </ul>
                 <form className="d-flex input-group w-auto mx-auto">
                 <input
                     type="search"
                     className="form-control rounded"
-                    placeholder="Pretraži"
+                    placeholder="Pretraži sastojke"
                     aria-label="Search"
                     aria-describedby="search-addon"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <span className="input-group-text border-0" id="search-addon" style={{ cursor: 'pointer' }} onMouseEnter={(e) => {
             e.target.style.backgroundColor = '#05ad86'}} onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'transparent'}}>
-                  <BiSearch onClick={handleSearchClick} style={{ color: 'black', fontSize: '1.2rem' }}/>
+              e.target.style.backgroundColor = 'transparent'}} onClick={handleSearchClick}>
+                  <BiSearch style={{ color: 'black', fontSize: '1.2rem' }}/>
                 </span>
                 </form>  
 

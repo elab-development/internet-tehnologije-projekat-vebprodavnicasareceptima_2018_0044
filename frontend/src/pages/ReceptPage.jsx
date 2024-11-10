@@ -6,7 +6,7 @@ import { assets } from '../assets/assets';
 import { StoreContext } from '../context/StoreContext';
 import SastojakDisplay from '../components/SastojakDisplay';
 
-const ReceptPage = () => {
+const ReceptPage = ({userRole}) => {
     const { id } = useParams(); // Uzima ID iz URL-a
     const [recept, setRecept] = useState(null);
     const{recepti_list} = useContext(StoreContext);
@@ -35,7 +35,7 @@ const ReceptPage = () => {
         <div className='recept-page'>
             <div className="container-top flex">            
                 <div className="container-left ">
-                        <img src={recepti_list[id].recept_image} alt="" />                    
+                        <img src={recepti_list?.[id-1]?.recept_image || assets.logo} alt="" />                    
                 </div>
                 <div className="container-right">
                     <h2>{recept.naziv}</h2>
@@ -56,7 +56,9 @@ const ReceptPage = () => {
             <div className="sastojci-list">
                 <div className="sastojci-list-title flex">
                     <h3>Sastojci na dohvat ruke:</h3>
+                    {userRole === "user" && (
                     <button>Dodaj sve</button>
+                    )}
                 </div>
                 <SastojakDisplay id={id}/>
             </div>

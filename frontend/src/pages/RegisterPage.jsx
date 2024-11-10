@@ -38,7 +38,7 @@ const RegisterPage = () => {
                 <form onSubmit={handleSubmit}>
 
                     <div className="mb-md-5 mt-md-4 pb-2">
-                    <h2 className="fw-bold mb-2 text-uppercase">Registrujte se</h2>
+                    <h2 className="fw-bold mb-2 text-uppercase text-white">Registrujte se</h2>
                     <p className="text-white-50 mb-5">Unesite podatke i napravite novi nalog.</p>
 
                     <div className="form-outline form-white mb-4">
@@ -70,7 +70,7 @@ const RegisterPage = () => {
                 </form>
 
                     <div>
-                        <p className="mb-0">
+                        <p className="mb-0 text-white">
                         Imate nalog? <a href="/login" className="text-white-50 fw-bold">Prijavite se</a>
                         </p>
                     </div>

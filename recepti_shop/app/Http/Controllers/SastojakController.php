@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sastojak;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SastojakController extends Controller
 {
@@ -64,4 +65,13 @@ class SastojakController extends Controller
         $sastojak->delete();
         return response()->json(null, 204);
     }
+
+    public function pretraziPoNazivu(Request $request)
+    {
+        $naziv = $request->input('naziv');
+        $sastojci = DB::select("SELECT * FROM sastojci WHERE naziv LIKE ?", ["%$naziv%"]);
+        
+        return response()->json(['status' => 'success', 'data' => $sastojci]);
+    }
+
 }

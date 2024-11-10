@@ -15,9 +15,9 @@ class ReceptController extends Controller
      */
     public function index()
     {
-         $recepti = Recept::paginate(10);
-         return ReceptResource::collection($recepti);
-        //return ReceptResource::collection(Recept::all());
+        //  $recepti = Recept::paginate(10);
+        //  return ReceptResource::collection($recepti);
+        return ReceptResource::collection(Recept::all());
     }
 
 
@@ -102,4 +102,17 @@ class ReceptController extends Controller
 
         return response()->json(['message' => 'Recept je dodat u korpu.'], 200);
     }
+
+    public function pretraziPoNazivu(Request $request)
+    {
+        $upit = $request->input('naziv');
+
+        $recepti = Recept::where('naziv', 'LIKE', '%' . $upit . '%')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $recepti
+        ], 200);
+    }
+
 }

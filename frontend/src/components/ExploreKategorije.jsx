@@ -10,8 +10,8 @@ const ExploreKategorije = ({category,addCategory}) => {
       <div className="explore-kat-list">
         {kategorija_list.map((item,index)=>{
           return(
-            <div onClick={()=> addCategory(prev=>prev===item.kat_name?"Izabrano":item.kat_name)} key={index} className="explore-kat-list-item">
-              <img className={category===item.kat_name?"active":""} src={item.kat_image} alt="" />
+            <div onClick={()=> addCategory(prev=>prev===item.id?"Izabrano":item.id)} key={index} className="explore-kat-list-item">
+              <img className={category===item.id?"active":""} src={item.kat_image} alt="" />
               <p>{item.kat_name}</p>
             </div>
           )

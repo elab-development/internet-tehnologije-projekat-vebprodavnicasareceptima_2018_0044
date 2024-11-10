@@ -3,13 +3,11 @@ import './Home.css'
 import Header from '../components/Header'
 import ExploreKategorije from '../components/ExploreKategorije'
 import ReceptDisplay from '../components/ReceptDisplay'
-import SastojakCard from '../components/SastojakCard'
-import { StoreContext } from '../context/StoreContext'
+
 
 
 const HomePage = ({userRole}) => {
   const [category, setCategory] = useState("Izabrano");
-  const{sastojci_list} = useContext(StoreContext);
 
   function addCategory(category){
     setCategory(category);
@@ -20,9 +18,6 @@ const HomePage = ({userRole}) => {
        <Header/> 
         <ExploreKategorije category={category} addCategory={addCategory}/>
         <ReceptDisplay category={category}/>
-        <div className="sastojci">
-        
-        </div>
     </div>
   )
 }
