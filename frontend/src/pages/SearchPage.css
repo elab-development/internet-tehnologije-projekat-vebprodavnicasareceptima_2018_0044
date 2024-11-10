@@ -1,0 +1,151 @@
+.filter-page{
+    margin: 20px 20px 50px 20px;    
+}
+
+.title{
+    text-align: center;
+    color: rgb(36, 130, 99);
+}
+
+.main-page-container{
+    display: grid;
+    grid-template-columns: 0.8fr 4fr;
+    gap: 60px;
+}
+
+.sidebar-title{
+    font-size: 26px;
+    font-weight: 500;
+    color: rgb(62, 171, 134);
+}
+
+.filter-sidebar hr{
+    size: 2px;
+    color: rgb(55, 219, 165);
+}
+
+.filter-sidebar .widget{
+    margin: 20px 0;
+}
+
+.filter-sidebar label:not(.radio-search-label){
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.filter-sidebar label span{
+    font-weight: 600;
+}
+
+.summary span{
+    font-weight: 500;
+    color: rgba(20, 134, 106, 0.722);
+}
+
+.arrow-down-s-line{
+    color: rgb(32, 182, 145);
+    font-weight: 600;
+    
+}
+
+.filter-sidebar label i{
+    font-size: 26px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .15s;
+}
+
+.filter-sidebar .list-block ul{
+    padding-left: 15px;
+    margin-top: 10px;
+    height: 230px;
+}
+
+.scroll-to{
+    display: block;
+    padding: 0;
+    overflow-y: auto; 
+    max-height: 200px; 
+}
+
+.filter-sidebar .widget input[type="checkbox"]{
+    display: none;
+}
+
+.list-block{
+    padding-right: 15px;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+.filter-sidebar .widget input:checked ~ div{
+    max-height: 1000px;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+}
+
+.filter-sidebar .widget input:checked ~ label i{
+    transform: rotate(180deg);
+
+}
+
+.filter-sidebar .widget :where(.list-block > div){
+    padding-top: 20px;
+
+}
+
+.list-block-container{
+    list-style: none;
+}
+
+.list-block-container li{
+    font-size: 15px;
+    margin-top: 2px;
+    color: rgb(98, 98, 98);
+}
+
+.search-bar-buttons-container{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar-buttons{
+    display: flex;
+    justify-content: start;
+    gap: 3px;
+}
+
+.radio-type-search{
+    color: rgb(76, 153, 127);
+}
+
+.radio-search-label{
+    color: rgb(98, 98, 98);
+}
+
+.search-box{
+    background-color: rgba(108, 174, 152, 0.399);
+    border-radius: 5px;
+    border: 1px solid rgba(108, 174, 152);
+}
+
+.search-icon{
+    font-size: 1.4rem;
+    margin-left: 10px;
+}
+
+.search-bar{
+    position: relative;
+}

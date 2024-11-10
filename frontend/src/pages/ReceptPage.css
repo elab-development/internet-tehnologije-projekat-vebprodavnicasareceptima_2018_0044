@@ -92,13 +92,13 @@ p{
 }
 
 .sastojci-list button{
-    border: 2px;
-    border-color: black;
+    border: 1px solid;
+    border-color: rgb(136, 136, 136);
     color: white;
     font-weight: 500;
     padding: 0.5vw 1.5vw;
-    background-color: rgb(62, 216, 152);
+    background-color: #05ad86;
     font-size: max(1vw,13px);
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
 }

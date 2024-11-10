@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('recepti/filter', [ReceptController::class, 'filter']);
 Route::get('/recepti/{id}', [ReceptController::class, 'show']);
+Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']);
 
 Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
@@ -38,7 +39,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']); //msm da moze i guest
     Route::post('logout', [AuthController::class, 'logout']);
 });
 

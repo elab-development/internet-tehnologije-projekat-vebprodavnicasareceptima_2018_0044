@@ -83,5 +83,118 @@ export const sastojci_list = [
         unit:"kom",
         price: 180,
         imgSrc: recept_1
-    }
+    },
+    {
+        id:2,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:3,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:4,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:5,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:6,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:7,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:8,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:9,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:10,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:11,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:12,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:13,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:14,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:15,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:18,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:28,
+        name: "Jaja",
+        unit:"kom",
+        price: 180,
+        imgSrc: recept_1
+    },
+    
 ]

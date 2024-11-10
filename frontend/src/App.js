@@ -10,6 +10,7 @@ import ReceptPage from './pages/ReceptPage';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import CartPage from './pages/CartPage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   const [token,setToken] = useState();
@@ -37,6 +38,7 @@ function App() {
         {/* <Route path='/' element={<><NavBar token={token} removeToken={removeToken} userRole={userRole} removeUserRole={removeUserRole} /><SastojakCard /> <ReceptCard/></> }  />*/}
         <Route path='/' element={<HomePage token={userRole}/>}  />
         <Route path='/korpa' element={<CartPage/>}/>
+        <Route path='/filter' element={<SearchPage/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

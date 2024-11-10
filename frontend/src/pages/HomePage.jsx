@@ -21,10 +21,8 @@ const HomePage = ({userRole}) => {
         <ExploreKategorije category={category} addCategory={addCategory}/>
         <ReceptDisplay category={category}/>
         <div className="sastojci">
-        {sastojci_list.map((item,index)=>{
-          return <SastojakCard key={index} userRole={userRole} id={item.id} name={item.name} price={item.price} unit={item.unit} imgSrc={item.imgSrc} />
-        })}
-          </div>
+        
+        </div>
     </div>
   )
 }

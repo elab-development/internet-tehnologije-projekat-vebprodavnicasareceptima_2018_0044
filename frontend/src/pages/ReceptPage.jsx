@@ -4,6 +4,7 @@ import './ReceptPage.css'
 import { useParams } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { StoreContext } from '../context/StoreContext';
+import SastojakDisplay from '../components/SastojakDisplay';
 
 const ReceptPage = () => {
     const { id } = useParams(); // Uzima ID iz URL-a
@@ -31,20 +32,6 @@ const ReceptPage = () => {
     }
 
     return (
-        // <div>
-        //     <div>
-        //     <img src={assets.recept_1} alt='' />
-        //     <h1>{recept.naziv}</h1>
-        //    {/*} <img src={recept.image} alt={recept.title} />   Kako da se dodaju pojedinacne slike dinamicki? Proslediti mozda ili u folderu ih nazvati po id-ju??*/}
-        //     <p>{recept.opis}</p>
-        //     {/*<h3>Sastojci:</h3>
-        //     <ul>
-        //         {recept.ingredients.map((sastojak, index) => (
-        //             <li key={index}>{sastojak.name}</li>
-        //         ))}
-        //     </ul> */}
-        //     </div>
-        // </div>
         <div className='recept-page'>
             <div className="container-top flex">            
                 <div className="container-left ">
@@ -71,7 +58,7 @@ const ReceptPage = () => {
                     <h3>Sastojci na dohvat ruke:</h3>
                     <button>Dodaj sve</button>
                 </div>
-                {/* Sastojak displej */}
+                <SastojakDisplay id={id}/>
             </div>
         </div>
     );
