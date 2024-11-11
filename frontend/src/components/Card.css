@@ -25,6 +25,11 @@
     flex-direction: column;
 }
 
+.card-sastojak .active{
+    border: 3px solid #27c79ca2;
+    border-radius: 15px;
+}
+
 .card-img-item{
     width: 100%;
     height: 270px;

@@ -144,8 +144,17 @@
 .search-icon{
     font-size: 1.4rem;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .search-bar{
     position: relative;
+}
+
+.list-block-container a.active {
+    background-color: #4ce2bdbd; 
+    /* color: #fff; */
+    font-weight: 500; 
+    border-radius: 5px;
+    padding: 3px;
 }

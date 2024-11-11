@@ -22,9 +22,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('recepti/filter', [ReceptController::class, 'filter']);
 Route::get('/recepti/{id}', [ReceptController::class, 'show']);
 Route::get('/recepti', [ReceptController::class, 'index']);
+Route::get('/kuhinje', [KuhinjaController::class, 'index']);
 Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']);
+Route::get('/recepti/sastojak/{sastojakId}', [ReceptController::class, 'getReceptiBySastojak']);
 Route::get('/recept/pretraga', [ReceptController::class, 'pretraziPoNazivu']);
 Route::get('/sastojak/pretraga', [SastojakController::class, 'pretraziPoNazivu']);
+
 
 
 Route::middleware('guest')->group(function () {

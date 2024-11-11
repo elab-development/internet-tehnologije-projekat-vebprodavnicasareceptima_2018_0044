@@ -16,8 +16,14 @@ class KategorijaFactory extends Factory
      */
     public function definition(): array
     {
+        static $counter = 0;
+        $nazivi = ['Predjela', 'Glavna jela', 'Salate', 'Deserti', 'Supe i čorbe', '15-minutni obroci', 'Testa'];
+
+        $naziv = $nazivi[$counter % count($nazivi)];
+        $counter++;
+
         return [
-            'naziv'=> $this->faker->randomElement(['Predjela', 'Glavna jela', 'Deserti', 'Salate', 'Supe i čorbe','Testa','15. minutni obroci','30.minuta obrok']),
+            'naziv' => $naziv,
         ];
     }
 }

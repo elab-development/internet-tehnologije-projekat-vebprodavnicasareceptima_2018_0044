@@ -115,4 +115,17 @@ class ReceptController extends Controller
         ], 200);
     }
 
+    public function getReceptiBySastojak(string $sastojakId)
+    {
+
+        $recepti = Recept::whereHas('sastojci', function ($query) use ($sastojakId) {
+            $query->where('sastojak_id', $sastojakId);
+        })->get();
+
+        return response()->json([
+            'data' => $recepti
+        ]);
+    }
+
+
 }

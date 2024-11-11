@@ -74,4 +74,5 @@ class SastojakController extends Controller
         return response()->json(['status' => 'success', 'data' => $sastojci]);
     }
 
+
 }

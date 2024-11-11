@@ -4,8 +4,6 @@ import { useState } from 'react';
 import RegisterPage from './pages/RegisterPage';
 import {BrowserRouter, Routes,Route} from 'react-router-dom';
 import NavBar from './components/NavBar';
-import SastojakCard from './components/SastojakCard';
-import ReceptCard from './components/ReceptCard';
 import ReceptPage from './pages/ReceptPage';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
@@ -35,10 +33,9 @@ function App() {
         <Route path='/login' element={<LoginPage addToken={addToken} addUserRole={addUserRole}/>}    />
         <Route path='/register' element={<RegisterPage/>}    />
         <Route path="/recepti/:id" element={<ReceptPage userRole={userRole} />} />
-        {/* <Route path='/' element={<><NavBar token={token} removeToken={removeToken} userRole={userRole} removeUserRole={removeUserRole} /><SastojakCard /> <ReceptCard/></> }  />*/}
-        <Route path='/' element={<HomePage token={userRole}/>}  />
+        <Route path='/' element={<HomePage/>}  />
         <Route path='/korpa' element={<CartPage/>}/>
-        <Route path='/filter' element={<SearchPage/>}/>
+        <Route path='/filter' element={<SearchPage userRole={userRole}/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

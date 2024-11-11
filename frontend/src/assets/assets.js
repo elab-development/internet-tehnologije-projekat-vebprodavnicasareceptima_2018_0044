@@ -68,128 +68,179 @@ export const recepti_list = [
     {
         id:3,
         recept_image: recept_3
-    }
+    },
+    {
+        id:4,
+        recept_image: recept_3
+    },
+    {
+        id:5,
+        recept_image: recept_3
+    },
+    {
+        id:6,
+        recept_image: recept_3
+    },
+    {
+        id:7,
+        recept_image: recept_3
+    },
+    {
+        id:8,
+        recept_image: recept_3
+    },
+    {
+        id:9,
+        recept_image: recept_3
+    },
+    {
+        id:10,
+        recept_image: recept_3
+    },
+    
 ]
 
 export const sastojci_list = [
     {
         id:1,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:2,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:3,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:4,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:5,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:6,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:7,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:8,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:9,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:10,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:11,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:12,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:13,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:14,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
         imgSrc: recept_1
     },
     {
         id:15,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:16,
+        imgSrc: recept_1
+    },
+    {
+        id:17,
         imgSrc: recept_1
     },
     {
         id:18,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:19,
+        imgSrc: recept_1
+    },
+    {
+        id:20,
+        imgSrc: recept_1
+    },
+    {
+        id:21,
+        imgSrc: recept_1
+    },
+    {
+        id:22,
+        imgSrc: recept_1
+    },
+    {
+        id:23,
+        imgSrc: recept_1
+    },
+    {
+        id:24,
+        imgSrc: recept_1
+    },
+    {
+        id:25,
+        imgSrc: recept_1
+    },
+    {
+        id:26,
+        imgSrc: recept_1
+    },
+    {
+        id:27,
         imgSrc: recept_1
     },
     {
         id:28,
-        name: "Jaja",
-        unit:"kom",
-        price: 180,
+        imgSrc: recept_1
+    },
+    {
+        id:29,
+        imgSrc: recept_1
+    },
+    {
+        id:30,
         imgSrc: recept_1
     },
     
+]
+
+export const vrste_obroka = [
+    {
+        name:'dorucak'
+    },
+    {
+        name:'brunc'
+    },
+    {
+        name:'rucak'
+    },
+    {
+        name:'vecera'
+    },
+    {
+        name:'uzina'
+    },
+    {
+        name:'desert'
+    },
 ]

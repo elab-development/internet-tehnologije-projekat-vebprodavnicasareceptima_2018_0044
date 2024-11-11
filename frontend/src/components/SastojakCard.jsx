@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { StoreContext } from '../context/StoreContext';
 
-const Card = ({id,name,unit, imgSrc, price,userRole}) => {
+const Card = ({id,name,unit, imgSrc, price,userRole, oznacen, addOznacenSastojak}) => {
   const [quantity, setQuantity] = useState(0);
   const {cartItems, addToCart, removeFromCart} = useContext(StoreContext);
 
@@ -28,8 +28,9 @@ const Card = ({id,name,unit, imgSrc, price,userRole}) => {
 
   return (
 
-    <div className="card-sastojak">
-      <div className="card-img-container">
+    <div className="card-sastojak" onClick={()=>addOznacenSastojak(id)}>
+      <div className={oznacen===id?"active":""}>
+       <div className="card-img-container">
             <img src= {imgSrc} className="card-img-item" alt={name} />
             {userRole === "user" && (
               <>
@@ -50,8 +51,8 @@ const Card = ({id,name,unit, imgSrc, price,userRole}) => {
         </div>
         <p className="card-price">{price}RSD</p>
       </div>
+     </div>
     </div>
-
 
   );
 };

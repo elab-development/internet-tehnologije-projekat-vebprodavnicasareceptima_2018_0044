@@ -3,3 +3,9 @@
   width: 80%;
   margin: auto;
 }
+
+h2{
+  font-size: max(2vw,24px);
+  font-weight: 600;
+  color: rgb(16, 135, 92);
+}

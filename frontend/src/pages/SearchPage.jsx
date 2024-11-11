@@ -1,22 +1,120 @@
-import React, { useState } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import './SearchPage.css'
 import { BiSearch } from "react-icons/bi";
 import SastojakDisplay from '../components/SastojakDisplay';
 import ReceptDisplay from '../components/ReceptDisplay';
+import { StoreContext } from '../context/StoreContext';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Pagination from '../components/Pagination';
 
-const SearchPage = () => {
+const SearchPage = ({userRole}) => {
+
+    const{kategorija_list, vrste_obroka} =useContext(StoreContext);
     const [listaRecepata, setlistaRecepata] = useState([]);
-    const [currentPage, setCurrentPage]=useState(1);
-    const [itemsPerPage,setItemsPerPage]=useState(10); 
+    const [kuhinje, setKuhinje] = useState([]);
+    const [sastojci, setSastojci] = useState([]);
+    const [parametri, setParametri] = useState(null);
 
-    const lastItemIndex = currentPage*itemsPerPage;
-    const firstitemIndex = lastItemIndex-itemsPerPage;
-    const thisPageItems = listaRecepata.slice(firstitemIndex,lastItemIndex)
-    const pages = []
+    //Radio button
+    const [selectedRadio, setSelectedRadio] = useState('sastojak');
+    const handleRadioChange = (event) => {
+        setSelectedRadio(event.target.value);
+        // setSearchQuery('')
+        setlistaRecepata([])
+        setSastojci([])
+        setThisPageItems([])
+    };
 
-    for (let i = 1; i < listaRecepata.length/itemsPerPage; i++){
-        pages.push(i);       
-    }
+    //kriterijumi filtriranja za recept
+    const [selectedKategorija, setSelectedKategorija] = useState(null);
+    const [selectedKuhinja, setSelectedKuhinja] = useState(null);
+    const [selectedVrstaObroka, setSelectedVrstaObroka] = useState(null);
+    
+
+    //Pretraga
+      let navigate = useNavigate();
+      const [searchQuery, setSearchQuery] = useState('');
+      const handleSearchClick = () => {
+        if (searchQuery.trim()) {
+          navigate(`/filter?naziv=${searchQuery}`);
+          setSearchQuery('');
+        }
+    }; 
+    const location = useLocation();
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const naziv = params.get('naziv');
+        setParametri(naziv);
+
+        if (naziv) {
+            const fetchPodaciPretrage = async () => {
+                try {
+                    if(selectedRadio==='sastojak'){
+                        const response = await axios.get(`/api/sastojak/pretraga?naziv=${naziv}`);
+                        setSastojci(response.data.data);
+                        console.log(response.data)
+                    } else{
+                        const response = await axios.get(`/api/recept/pretraga?naziv=${naziv}`);
+                        setlistaRecepata(response.data.data);
+                        console.log(response.data)
+                    }
+                } catch (error) {
+                    console.error("Greška pri preuzimanju sastojaka:", error);
+                }
+            };
+
+            fetchPodaciPretrage();
+        }
+    }, [location.search]);
+
+    useEffect(() => {
+        setParametri(null);
+        const fetchPodaciPretrage = async () => {
+            try {
+                const filterParams = new URLSearchParams();
+                
+                if (selectedKategorija) filterParams.append('kategorija_id', selectedKategorija);
+                if (selectedKuhinja) filterParams.append('kuhinja_id', selectedKuhinja);
+                if (selectedVrstaObroka) filterParams.append('vrsta_obroka', selectedVrstaObroka);
+                
+                if (filterParams.toString()) {
+                    const response = await axios.get(`/api/recepti/filter?${filterParams.toString()}`);
+                    setlistaRecepata(response.data.data);  
+                    console.log(response.data.data);  
+                } else {
+                    setlistaRecepata([]); 
+                    console.log("Nema filtera za pretragu");
+                }
+            } catch (error) {
+                console.error("Greška pri preuzimanju podataka:", error);
+            }
+        };
+    
+        fetchPodaciPretrage();
+    }, [selectedKategorija, selectedKuhinja, selectedVrstaObroka]);
+
+    //Paginacija
+    const [thisPageItems, setThisPageItems] = useState([]);
+
+    // lista kuhinja
+    useEffect(() => {
+        let config = {
+        method: 'get',
+        url: 'http://localhost:8000/api/kuhinje',
+        headers: { }
+      };
+      
+      axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setKuhinje(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }, []);
 
   return (
     <div className='filter-page' id='filter-page'>       
@@ -34,17 +132,19 @@ const SearchPage = () => {
                                         <div className="search-bar-container">
                                             <div className="search-bar-buttons-container">
                                                 <div className="search-bar-buttons">
-                                                    <input type="radio" name='radio-type-search' id='radio-recept'/>
-                                                    <label className='radio-search-label' htmlFor="radio-recept">Recept</label>
+                                                    <input type="radio" name='radio-type-search' id='radio-sastojak' 
+                                                    value="sastojak" checked={selectedRadio === 'sastojak'} onChange={handleRadioChange}/>
+                                                    <label className='radio-search-label' htmlFor="radio-sastojak">Sastojak</label>
                                                 </div>
                                                 <div className="search-bar-buttons">
-                                                    <input type="radio" name='radio-type-search' id='radio-sastojak'/>
-                                                    <label className='radio-search-label' htmlFor="radio-sastojak">Sastojak</label>
+                                                    <input type="radio" name='radio-type-search' id='radio-recept' value="recept"
+                                                    checked={selectedRadio === 'recept'} onChange={handleRadioChange}/>
+                                                    <label className='radio-search-label' htmlFor="radio-recept">Recept</label>
                                                 </div>
                                             </div>
                                             <div className="search-bar">
-                                                <input type="text" className='search-box'/>
-                                                <BiSearch className='search-icon'/>
+                                                <input type="text" className='search-box' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                                                <BiSearch className='search-icon' onClick={handleSearchClick}/>
                                             </div>
                                         </div>
                                     </div>
@@ -60,9 +160,9 @@ const SearchPage = () => {
                                         </label>
                                         <div className="list-block kategorije scroll-to">
                                             <ul className="list-block-container">
-                                                {/* map: ucitaj listu kategorija */}
-                                                <li><a href="#">Predjela</a></li>
-                                                <li><a href="#">Glavna jela</a></li>
+                                                {kategorija_list && (kategorija_list.map((item)=> {
+                                                    return <li key={item.id}><a className={selectedKategorija === item.id ? 'active' : ''} href="#" onClick={() => setSelectedKategorija(item.id)}>{item.kat_name}</a></li>;                                                   
+                                                }))}
                                             </ul>
                                         </div>
                                     </div>
@@ -76,14 +176,9 @@ const SearchPage = () => {
                                         </label>
                                         <div className="list-block kuhinje scroll-to">
                                             <ul className="list-block-container">
-                                                {/* map: ucitaj listu kuhinja */}
-                                                <li><a href="#">Italijanska</a></li>
-                                                <li><a href="#">Italijanska</a></li>
-                                                <li><a href="#">Italijanska</a></li>
-                                                <li><a href="#">Italijanska</a></li>
-                                                <li><a href="#">Italijanska</a></li>
-                                                <li><a href="#">Italijanska</a></li>
-                                               
+                                            {kuhinje && (kuhinje.map((item)=> {
+                                                    return <li key={item.id}><a className={selectedKuhinja === item.id ? 'active' : ''} href="#"onClick={() => setSelectedKuhinja(item.id) }>{item.naziv}</a></li>;                                                   
+                                                }))}                                   
                                             </ul>
                                         </div>
                                     </div>
@@ -97,13 +192,9 @@ const SearchPage = () => {
                                         </label>
                                         <div className="list-block vrste-obroka">
                                             <ul className="list-block-container">
-                                                {/* map: ucitaj listu kuhinja */}
-                                                <li><a href="#">Dorucak</a></li>
-                                                <li><a href="#">Brunc</a></li>
-                                                <li><a href="#">Rucak</a></li>
-                                                <li><a href="#">Vecera</a></li>
-                                                <li><a href="#">Uzina</a></li>
-                                                <li><a href="#">Desert</a></li>
+                                                {vrste_obroka && (vrste_obroka.map((item)=> {
+                                                    return <li key={item.name}><a className={selectedVrstaObroka === item.name ? 'active' : ''} href={''} onClick={(e) => {e.preventDefault(); setSelectedVrstaObroka(item.name);}}>{item.name}</a></li>;                                                   
+                                                }))}
                                             </ul>
                                         </div>
                                     </div>
@@ -113,30 +204,36 @@ const SearchPage = () => {
                     </div>
                 </div>
                 <div className="category-content">
-                    <div className="sastojci-display-grid">
-                        <SastojakDisplay/>
-                        {/* Prikazuje ako je sastojak oznacen i trazen preko, nisam uradila api rutu za ovo*/}
-                    </div>
-                    <hr />
-                    <div className="recepti-display-grid">
-                        <ReceptDisplay/>
-                        {/* Prikazuje ako je recept oznacen i trazen preko imena, nisam uradila api rutu za ovo isto ako je nesto od kategorija cekirano
-                        ako trazim preko imena onda bih da odcekiram sve kategorije*/}
-                        {/*za paginaciju prosledi thisPageItems*/}
-                    </div>
-                    <div className="pagination-container">
-                        <span>Prikazano {} od {} rezultata</span> {/*Da li zadrzati?*/}
-                        <nav className='pagination'>
-                            {
-                                pages.map((item,index)=>{
-                                    return(
-                                        <button onClick={()=> setCurrentPage(item)} key={index} className='pagination-btn'>{item}</button>
+                    {
+                        parametri!=null && ( selectedRadio==='sastojak'? (
+                            <>
+                            <div className="sastojci-display-grid">
+                                <h4>Rezultati pretrage za "{parametri}"</h4>
+                                 <SastojakDisplay sastojci={thisPageItems} userRole={userRole} recepti={listaRecepata} setRecepti={setlistaRecepata}/>
+                                 <Pagination niz={sastojci} setThisPageItems={setThisPageItems}/>
+                            </div>
+                                { listaRecepata!==null&&(
+                                    <div className="recepti-display-grid">
+                                        <hr />
+                                        <p>Recepti u kojima se upotrebljava sastojak</p>
+                                        <ReceptDisplay recepti={listaRecepata}/>
+                                    </div>
                                     )
-
-                                })
-                            }
-                        </nav>
-                    </div>
+                                }
+                            </>
+                        ) : (
+                            <div className="recepti-display-grid"> 
+                                <h4>Rezultati pretrage za "{parametri}"</h4>
+                                <ReceptDisplay recepti={thisPageItems} />
+                                <Pagination niz={listaRecepata} setThisPageItems={setThisPageItems}/>
+                            </div>
+                        ))
+                    }  
+                    
+                    <div className="recepti-display-grid"> 
+                                <ReceptDisplay recepti={thisPageItems} />
+                                <Pagination niz={listaRecepata} setThisPageItems={setThisPageItems}/>
+                    </div> 
                 </div>
             </div>
         </div>

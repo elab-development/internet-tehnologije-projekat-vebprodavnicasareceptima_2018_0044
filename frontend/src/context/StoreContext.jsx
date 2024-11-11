@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { recepti_list } from "../assets/assets";
+import { kategorija_list, recepti_list, vrste_obroka } from "../assets/assets";
 import { sastojci_list } from "../assets/assets";
 
 export const StoreContext = createContext(null)
@@ -37,8 +37,10 @@ const StoreContextProvider = (props) => {
 
     const contextValue = {
         recepti_list,
+        kategorija_list,
         sastojci_list,
         cartItems,
+        vrste_obroka,
         setCartItems,
         addToCart,
         removeFromCart,

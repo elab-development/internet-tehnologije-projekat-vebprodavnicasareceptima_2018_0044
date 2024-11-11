@@ -26,6 +26,24 @@ const ReceptPage = ({userRole}) => {
 
         fetchData();
     }, [id]);
+   
+    const [receptSastojci, setreceptSastojci] = useState(null);
+
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await axios.get(`/api/recepti/${id}/sastojci`, {
+                  headers: { 'Content-Type': 'application/json' }
+              });
+              setreceptSastojci(response.data.data); //!!Ugnjezdeno 
+              console.log("Podaci o sastojcima:", response.data.data);
+          } catch (error) {
+              console.error("Greška pri preuzimanju sastojaka:", error);
+          }
+      };
+
+      fetchData();
+     }, [id]);
 
     if (!recept) {
         return <p>Učitavanje...</p>;
@@ -60,7 +78,7 @@ const ReceptPage = ({userRole}) => {
                     <button>Dodaj sve</button>
                     )}
                 </div>
-                <SastojakDisplay id={id}/>
+                <SastojakDisplay sastojci={receptSastojci}/>
             </div>
         </div>
     );
