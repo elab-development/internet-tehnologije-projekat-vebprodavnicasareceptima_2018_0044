@@ -6,11 +6,15 @@
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr 0.5fr ;
     align-items: center;
-    color: grey;
     font-size: max(1vw,12px);
 }
 
-.cart-items-item{
+.cart-items-title p{
+    color: rgb(47, 163, 129);
+    font-weight: 500;
+}
+
+.cart-items-title .cart-items-item{
     margin: 10px 0px;
     color: black;
     
@@ -58,6 +62,31 @@
     padding: 12px 0px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.cart-total button:hover{
+    background-color: rgb(17, 183, 133);
+}
+
+.btn-remove-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+}
+
+.btn-remove-all{
+    border: none;
+    color: white;
+    background-color: rgb(17, 183, 133);
+    width: max(12vw,150px);
+    padding: 12px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+} 
+
+.btn-remove-all:hover{
+    background-color: rgb(29, 226, 167);
 }
 
 @media (max-width:750px) {

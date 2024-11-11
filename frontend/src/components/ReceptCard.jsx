@@ -11,7 +11,7 @@ const Card = ({ id, name, description,  prep_time, imgSrc }) => {
     }
 
   return (
-    <div className="card" onClick={showRecept}>
+    <div className="card-recept" onClick={showRecept}>
       <div className="card-img-container">
             <img src= {imgSrc || "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"} className="card-img-item" alt={name} />
       </div>

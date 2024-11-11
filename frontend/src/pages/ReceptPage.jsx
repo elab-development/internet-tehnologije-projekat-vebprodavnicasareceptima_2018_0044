@@ -6,12 +6,13 @@ import { assets } from '../assets/assets';
 import { StoreContext } from '../context/StoreContext';
 import SastojakDisplay from '../components/SastojakDisplay';
 
-const ReceptPage = ({userRole}) => {
+const ReceptPage = () => {
     const { id } = useParams(); // Uzima ID iz URL-a
     const [recept, setRecept] = useState(null);
-    const{recepti_list} = useContext(StoreContext);
+    const{recepti_list,updateCartItems,userRole,token} = useContext(StoreContext);
 
     useEffect(() => {
+        console.log("Rola "+userRole)
         const fetchData = async () => {
             try {
                 const response = await axios.get(`/api/recepti/${id}`, {
@@ -45,6 +46,26 @@ const ReceptPage = ({userRole}) => {
       fetchData();
      }, [id]);
 
+     function handleAddAll() {
+        let config = {
+            method: 'post',
+            url: `http://localhost:8000/api/korpa/recept/${id}`,
+            headers: { 
+              Authorization: `Bearer ${token}`
+            }
+          };
+          
+          axios.request(config)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+            updateCartItems(token)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+     }
+
+
     if (!recept) {
         return <p>Učitavanje...</p>;
     }
@@ -75,10 +96,10 @@ const ReceptPage = ({userRole}) => {
                 <div className="sastojci-list-title flex">
                     <h3>Sastojci na dohvat ruke:</h3>
                     {userRole === "user" && (
-                    <button>Dodaj sve</button>
+                    <button onClick={handleAddAll}>Dodaj sve</button>
                     )}
                 </div>
-                <SastojakDisplay sastojci={receptSastojci}/>
+                <SastojakDisplay sastojci={receptSastojci} userRole={userRole} token={token}/>
             </div>
         </div>
     );

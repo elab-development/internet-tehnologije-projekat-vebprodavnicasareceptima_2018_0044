@@ -8,9 +8,9 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Pagination from '../components/Pagination';
 
-const SearchPage = ({userRole}) => {
+const SearchPage = () => {
 
-    const{kategorija_list, vrste_obroka} =useContext(StoreContext);
+    const{kategorija_list, vrste_obroka,userRole,token} =useContext(StoreContext);
     const [listaRecepata, setlistaRecepata] = useState([]);
     const [kuhinje, setKuhinje] = useState([]);
     const [sastojci, setSastojci] = useState([]);
@@ -209,7 +209,7 @@ const SearchPage = ({userRole}) => {
                             <>
                             <div className="sastojci-display-grid">
                                 <h4>Rezultati pretrage za "{parametri}"</h4>
-                                 <SastojakDisplay sastojci={thisPageItems} userRole={userRole} recepti={listaRecepata} setRecepti={setlistaRecepata}/>
+                                 <SastojakDisplay sastojci={thisPageItems} userRole={userRole} token={token} recepti={listaRecepata} setRecepti={setlistaRecepata}/>
                                  <Pagination niz={sastojci} setThisPageItems={setThisPageItems}/>
                             </div>
                                 { listaRecepata!==null&&(

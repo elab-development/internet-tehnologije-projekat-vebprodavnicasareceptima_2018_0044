@@ -18,7 +18,8 @@ class SastojakFactory extends Factory
     {
         return [
             'naziv' => $this->faker->word, 
-            'merna_jedinica' => $this->faker->randomElement(['kg', 'g', 'l', 'ml', 'kom'])
+            'merna_jedinica' => $this->faker->randomElement(['kg', 'g', 'l', 'ml', 'kom']),
+            'cena'=>$this->faker->randomNumber()
         ];
     }
 }

@@ -102,3 +102,8 @@ p{
     border-radius: 10px;
     cursor: pointer;
 }
+
+.sastojci-list button:hover{
+    border: 2px solid;
+    background-color: #0dcca0;
+}

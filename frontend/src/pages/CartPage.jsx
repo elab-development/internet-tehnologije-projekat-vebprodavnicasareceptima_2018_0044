@@ -1,9 +1,41 @@
 import React, { useContext } from 'react'
 import './Cart.css'
 import { StoreContext } from '../context/StoreContext'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const CartPage = () => {
-  const {cartItems,sastojci_list, removeFromCart, getTotalCartAmount} =useContext(StoreContext);
+  const {cartItems, removeFromCart, getTotalCartAmount, userRole, token,setCartItems} =useContext(StoreContext);
+  let navigate=useNavigate()
+
+  function handleKupiClick(){
+    if(getTotalCartAmount()!==0){
+      navigate('/kupovina')
+    }
+  }
+
+  function handleRemoveAllClick(){
+    let config = {
+      method: 'delete',
+      url: 'http://localhost:8000/api/korpa/isprazni',
+      headers: { 
+        Authorization: `Bearer ${token}`
+      }
+    };
+    
+    axios.request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      setCartItems([])
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  if(userRole!=='user'){
+    return <p>Ne mozete pristupiti ovoj stranici</p>
+  }
 
   return (
     <div className='cart'>
@@ -17,22 +49,24 @@ const CartPage = () => {
         </div>
         <br />
         <hr />
-        {sastojci_list.map((item, index)=>{
-          if(cartItems[item.id]>0){
+        {cartItems.map((item)=>{
             return(
-              <div>
+              <div key={item.id}>
                 <div className="cart-items-title cart-items-item">
-                  <p>{item.name}</p>
-                  <p>{item.price}</p>
-                  <p>{cartItems[item.id]}</p>
-                  <p>{item.price*cartItems[item.id]}</p>
+                  <p>{item.naziv}</p>
+                  <p>{item.cena} RSD</p>
+                  <p>{item.pivot.kolicina} {item.merna_jedinica}</p>
+                  <p>{item.cena*item.pivot.kolicina} RSD</p>
                   <p className='iks' onClick={()=>removeFromCart(item.id)}>X</p>
                 </div>
                 <hr />
               </div>
             )
-          }
         })}
+
+      </div>
+      <div className='btn-remove-container'>
+        <button className='btn-remove-all' onClick={handleRemoveAllClick}>Isprazni korpu</button>
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
@@ -40,12 +74,12 @@ const CartPage = () => {
           <div>
             <div className="cart-total-details">
               <p>Cena hrane</p>
-              <p>{getTotalCartAmount()}</p>
+              <p>{getTotalCartAmount()} RSD</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Cena dostave</p>
-              <p>{250}</p>
+              <p>{250} RSD</p>
             </div>
             <hr />
             <div className="cart-total-details">
@@ -53,7 +87,7 @@ const CartPage = () => {
               <b>{getTotalCartAmount()+250} RSD</b>
             </div>
           </div>
-          <button>Kupi</button>
+          <button onClick={handleKupiClick}>Kupi</button>
         </div>
       </div>
     </div>

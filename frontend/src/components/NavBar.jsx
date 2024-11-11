@@ -1,15 +1,17 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import './NavBar.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BiSearch } from "react-icons/bi";
 import { PiShoppingCartFill } from "react-icons/pi";
 import { assets } from '../assets/assets';
+import { StoreContext } from '../context/StoreContext';
 
-const NavBar = ({token,removeToken, userRole,removeUserRole}) => {
+const NavBar = () => {
     
   const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
+    const{token,removeToken,userRole,removeUserRole} = useContext(StoreContext)
 
     const handleRegisterClick = () => {
         navigate('/register');

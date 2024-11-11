@@ -1,10 +1,12 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { StoreContext } from '../context/StoreContext';
 
-const LoginPage = ({addToken,addUserRole}) => {    
+const LoginPage = () => {    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {addToken,addUserRole,updateCartItems} = useContext(StoreContext)
     
     let navigate = useNavigate();
     const handleSubmit = (event) => {
@@ -20,9 +22,12 @@ const LoginPage = ({addToken,addUserRole}) => {
             window.sessionStorage.setItem("auth_token",response.data.access_token);
             window.sessionStorage.setItem("username",response.data.username);
             window.sessionStorage.setItem("role",response.data.role);
-        }
-        addToken(response.data.access_token);
-        addUserRole(response.data.role);
+          }
+          addToken(response.data.access_token);
+          addUserRole(response.data.role);
+          if(response.data.role==='user'){
+            updateCartItems(response.data.access_token)
+          }
         navigate("/");
       })
       .catch((error)=>{

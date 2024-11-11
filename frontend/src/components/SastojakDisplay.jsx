@@ -4,11 +4,10 @@ import './SastojakDisplay.css'
 import { StoreContext } from '../context/StoreContext'
 import SastojakCard from './SastojakCard.jsx'
 import { assets } from '../assets/assets.js'
-import ReceptDisplay from './ReceptDisplay.jsx'
 
-const SastojakDisplay = ({sastojci,userRole, recepti=null,setRecepti=null}) => {
+const SastojakDisplay = ({sastojci, recepti=null,setRecepti=null}) => {
 
-  const{sastojci_list} = useContext(StoreContext);
+  const{sastojci_list,userRole,token} = useContext(StoreContext);
   // const [recepti, setRecepti] = useState([]);
   const [oznacenSastojak, setOznacenSastojak] = useState(0);
   
@@ -18,16 +17,19 @@ const SastojakDisplay = ({sastojci,userRole, recepti=null,setRecepti=null}) => {
 
   //Recepti u kojima se koristi sastojak
   useEffect(() => {      
-    const fetchReceptiBySastojak = async (sastojakId) => {
-      try {
-        const response = await axios.get(`/api/recepti/sastojak/${sastojakId}`);
-        setRecepti(response.data.data);
-        console.log(response.data.data)
-      } catch (error) {
-        console.error("Greška pri preuzimanju recepata:", error);
-      }
-    };  
-    fetchReceptiBySastojak(oznacenSastojak);
+    if(setRecepti!=null){ 
+      console.log("Rola "+userRole)
+      const fetchReceptiBySastojak = async (sastojakId) => {
+        try {
+          const response = await axios.get(`/api/recepti/sastojak/${sastojakId}`);
+          setRecepti(response.data.data);
+          console.log(response.data.data)
+        } catch (error) {
+          console.error("Greška pri preuzimanju recepata:", error);
+        }
+      };  
+      fetchReceptiBySastojak(oznacenSastojak);
+    }
   }, [oznacenSastojak]);
   
   if (!sastojci || sastojci.length===0) {
@@ -47,9 +49,10 @@ const SastojakDisplay = ({sastojci,userRole, recepti=null,setRecepti=null}) => {
                                 name={sastojakItem.naziv}
                                 unit={sastojakItem.merna_jedinica}
                                 imgSrc={item.imgSrc || assets.logo}
-                                price={200}
+                                price={sastojakItem.cena}
                                 userRole={userRole}
                                 oznacen={oznacenSastojak}
+                                token={token}
                                 addOznacenSastojak={addOznacenSastojak}
                             />
                         )

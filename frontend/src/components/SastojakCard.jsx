@@ -1,45 +1,49 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
+import axios from 'axios';
 import './Card.css'
-import { PiShoppingCartFill } from "react-icons/pi";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { StoreContext } from '../context/StoreContext';
 
-const Card = ({id,name,unit, imgSrc, price,userRole, oznacen, addOznacenSastojak}) => {
-  const [quantity, setQuantity] = useState(0);
-  const {cartItems, addToCart, removeFromCart} = useContext(StoreContext);
+const SastojakCard = ({id,name,unit, imgSrc, price, oznacen, addOznacenSastojak}) => {
 
-  const handleIncrease = () => {
-    setQuantity(quantity + 1);
-  };
+  const {cartItems,addToCart,removeFromCart,updateQuantity,token,userRole} = useContext(StoreContext);
+  const item = Array.isArray(cartItems) ? cartItems.find((sastojak) => sastojak.id === id) : null;
 
-  const handleDecrease = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+  function handlePlusClick(id){
+    const item = cartItems.find((sastojak) => sastojak.id === id);
+    updateQuantity(id,item.pivot.kolicina+1)
+  }
+
+  function handleRemoveFromCart(id){
+    const item = cartItems.find((sastojak) => sastojak.id === id);
+    if (!item) {
+      console.log("Sastojak nije pronađen u korpi.");
+      return;
     }
-  };
+    const currentQuantity = item.pivot.kolicina;
 
-
-  const handleAddToCart = () => {
-    // Logika za dodavanje u korpu, npr. API poziv sa quantity vrednošću
-    console.log(`Dodato u korpu: ${quantity} artikala`);
-  };
+    if (currentQuantity === 1) {
+        removeFromCart(id);        
+    } else {
+        updateQuantity(id, currentQuantity - 1);
+    }
+  }
 
   return (
-
     <div className="card-sastojak" onClick={()=>addOznacenSastojak(id)}>
       <div className={oznacen===id?"active":""}>
        <div className="card-img-container">
             <img src= {imgSrc} className="card-img-item" alt={name} />
             {userRole === "user" && (
               <>
-               {!cartItems[id]
-              ? <TbShoppingCartPlus  className='add' onClick={()=>addToCart(id)}/>
+               {!item
+              ? <TbShoppingCartPlus  className='add' onClick={()=>addToCart(id,1)}/>
               : <div className="card-counter">
-                <FaMinus onClick={()=>removeFromCart(id)}/>
-                <p>{cartItems[id]} {unit || "kom"}</p>
-                <FaPlus onClick={()=>addToCart(id)} />
+                <FaMinus onClick={()=>handleRemoveFromCart(id)}/>
+                <p>{item.pivot.kolicina} {unit || "kom"}</p>
+                <FaPlus onClick={()=>handlePlusClick(id)} />
                </div> 
                } 
               </>
@@ -53,8 +57,7 @@ const Card = ({id,name,unit, imgSrc, price,userRole, oznacen, addOznacenSastojak
       </div>
      </div>
     </div>
-
   );
 };
 
-export default Card;
+export default SastojakCard;
