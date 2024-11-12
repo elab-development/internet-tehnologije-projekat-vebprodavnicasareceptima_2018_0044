@@ -17,12 +17,14 @@ const Footer = () => {
                 <ul>
                     <li onClick={()=>{navigate('/')}}>Pocetna</li>
                     <li onClick={()=>{navigate('/filter')}}>Recepti</li>
+                    <li>
+                    <a href="https://github.com/elab-development/internet-tehnologije-projekat-vebprodavnicasareceptima_2018_0044" target='_blank'>Git</a>
+                    </li>
                 </ul>
             </div>
-            <div className="footer-content-center">
-                <h2>Kontaktirajte me</h2>
-                <a href="https://github.com/elab-development/internet-tehnologije-projekat-vebprodavnicasareceptima_2018_0044" target='_blank'>Git</a>
-            </div>
+            {/* <div className="footer-content-center">
+
+            </div> */}
         </div>
         <hr />
     </div>

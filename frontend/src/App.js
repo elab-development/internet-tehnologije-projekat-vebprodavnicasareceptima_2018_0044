@@ -10,11 +10,12 @@ import Footer from './components/Footer';
 import CartPage from './pages/CartPage';
 import SearchPage from './pages/SearchPage';
 import ThankYouPage from './pages/ThankYouPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
 
   return (
-    <BrowserRouter className="App">
+    <BrowserRouter>
       <NavBar />
       <Routes>
         <Route path='/login' element={<LoginPage/>}    />
@@ -24,6 +25,7 @@ function App() {
         <Route path='/korpa' element={<CartPage />}/>
         <Route path='/filter' element={<SearchPage />}/>
         <Route path='/kupovina' element={<ThankYouPage/>}/>
+        <Route path='/admin' element={<AdminPage/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

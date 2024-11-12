@@ -22,6 +22,12 @@ const NavBar = () => {
     const handleCartClick= () => {
       navigate('/korpa');
     };  
+    const handleAdminClick= () => {
+      navigate('/admin');
+    };  
+    const handleReceptiClick= () => {
+      navigate('/filter');
+    };  
     
     const handleSearchClick = () => {
       if (searchQuery.trim()) {
@@ -65,11 +71,11 @@ const NavBar = () => {
            {/* <ul className="navbar-nav d-flex w-100 justify-content-between align-items-center">*/}
             <ul className="navbar-nav me-auto">
                 <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/filter">Recepti</a>
+                <a className="nav-link active" aria-current="page" onClick={handleReceptiClick}>Recepti</a>
                 </li>
                 {token!=null && window.sessionStorage.getItem("role") === "admin" && (
                   <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/filter">Admin</a>
+                  <a className="nav-link active" aria-current="page" onClick={handleAdminClick}>Admin</a>
                   </li>
                 )}
             </ul>

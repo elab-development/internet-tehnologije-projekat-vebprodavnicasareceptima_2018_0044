@@ -16,3 +16,6 @@
     border: 2px solid #448475
 }
 
+.nav-link{
+    cursor: pointer;
+}
