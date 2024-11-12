@@ -72,7 +72,7 @@ const ReceptPage = () => {
 
     return (
         <div className='recept-page'>
-            <div className="container-top flex">            
+            <div className="container-top">            
                 <div className="container-left ">
                         <img src={recepti_list?.[id-1]?.recept_image || assets.logo} alt="" />                    
                 </div>

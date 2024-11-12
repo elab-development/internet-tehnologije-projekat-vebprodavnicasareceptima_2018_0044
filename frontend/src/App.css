@@ -10,18 +10,11 @@
   font-size: 1.2rem;     
   color: #aebdca;
 }
-.App {
-  /* text-align: center; */
-  /* width: 80%; */
-  /* margin: auto; */
-}
 
 .form-control.form-control-lg {
   color: #ffffff;
   
 }
-
-
 
 @keyframes fadeIn{
   0%{
@@ -31,3 +24,5 @@
     opacity: 1;
   }
 }
+
+

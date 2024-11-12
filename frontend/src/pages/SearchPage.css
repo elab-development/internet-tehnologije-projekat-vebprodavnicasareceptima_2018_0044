@@ -158,3 +158,11 @@
     border-radius: 5px;
     padding: 3px;
 }
+
+@media (max-width:550px) {
+    .main-page-container{
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+}

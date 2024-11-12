@@ -93,6 +93,31 @@
     .cart-bottom{
         flex-direction: column-reverse;
     }
+
+    .cart{
+        margin: 80px;
+    }
 }
+
+@media (max-width:600px) {
+    .cart{
+        margin: 50px;
+    }
+}
+
+@media (max-width:500px) {
+    .cart{
+        margin: 40px;
+    }
+}
+@media (max-width:400px) {
+    .cart{
+        margin: 20px;
+    }
+    .btn-remove-container{
+        justify-content: center;
+    }
+}
+
 
 

@@ -11,16 +11,14 @@
     background: white;
     box-shadow: 5px 5px 10px 3px white;
 }
-
-.container-left .container-right {
-    width: 50%;
-    padding: 30px;
-}
-
-.flex{
+.container-top{
     display: flex;
     justify-content: space-between;
-    
+}
+.container-left .container-right {
+    /* width: 50%; */
+    max-width: 100%;
+    padding: 30px;
 }
 
 .flex1{
@@ -39,12 +37,12 @@
     
 }
 .container-right{
-    padding: 50px 100px 50px 50px;
+    padding: 0px 100px 50px 50px;
 }
 
 h2{
     color: black;
-    margin: 20px 0 10px 0;
+    margin: 0px 0 10px 0;
     font-weight: 700;
 }
 
@@ -106,4 +104,62 @@ p{
 .sastojci-list button:hover{
     border: 2px solid;
     background-color: #0dcca0;
+}
+
+@media (max-width:1050px) {
+    /* .container-left .container-right {
+        width: 50%;
+        padding: 30px;
+    } */
+    .container-left img{
+        width: 400px;
+        height: 400px;
+    }
+
+    .container-right{
+        padding: 0px 50px 50px 50px;
+    }
+}
+
+@media (max-width:900px) {
+    .container-left img{
+        width: 350px;
+        height: 350px;
+        margin-top: 100px;
+    }
+}
+
+@media (max-width:850px) {
+    .container-top{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container-left img{
+        width: 400px;
+        height: 400px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+    .recept-page{
+        max-width: 90%;
+    }
+    .container-right{
+        padding: 0px 20px 20px 20px;
+    }
+}
+@media (max-width:450px) {
+
+    .container-left img{
+        width: 290px;
+        height: 290px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+    .recept-page{
+        max-width: 90%;
+    }
+    .container-right{
+        padding: 0px 20px 20px 20px;
+    }
 }
