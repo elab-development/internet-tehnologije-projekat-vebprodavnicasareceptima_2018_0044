@@ -45,10 +45,10 @@ const SastojakDisplay = ({sastojci, recepti=null,setRecepti=null}) => {
                         (
                             <SastojakCard
                                 key={index}
-                                id={item.id}
+                                id={sastojakItem.id}
                                 name={sastojakItem.naziv}
                                 unit={sastojakItem.merna_jedinica}
-                                imgSrc={item.imgSrc || assets.logo}
+                                imgSrc={item?.imgSrc || assets.logo}
                                 price={sastojakItem.cena}
                                 userRole={userRole}
                                 oznacen={oznacenSastojak}

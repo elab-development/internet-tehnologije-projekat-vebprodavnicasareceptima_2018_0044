@@ -161,7 +161,7 @@ const SearchPage = () => {
                                         <div className="list-block kategorije scroll-to">
                                             <ul className="list-block-container">
                                                 {kategorija_list && (kategorija_list.map((item)=> {
-                                                    return <li key={item.id}><a className={selectedKategorija === item.id ? 'active' : ''} href="#" onClick={() => setSelectedKategorija(item.id)}>{item.kat_name}</a></li>;                                                   
+                                                    return <li key={item.id}><a className={selectedKategorija === item.id ? 'active' : ''} href="#" onClick={() => setSelectedKategorija(selectedKategorija === item.id ? null : item.id)}>{item.kat_name}</a></li>;                                                   
                                                 }))}
                                             </ul>
                                         </div>
@@ -177,7 +177,7 @@ const SearchPage = () => {
                                         <div className="list-block kuhinje scroll-to">
                                             <ul className="list-block-container">
                                             {kuhinje && (kuhinje.map((item)=> {
-                                                    return <li key={item.id}><a className={selectedKuhinja === item.id ? 'active' : ''} href="#"onClick={() => setSelectedKuhinja(item.id) }>{item.naziv}</a></li>;                                                   
+                                                    return <li key={item.id}><a className={selectedKuhinja === item.id ? 'active' : ''} href="#"onClick={() => setSelectedKuhinja(selectedKuhinja === item.id ? null : item.id) }>{item.naziv}</a></li>;                                                   
                                                 }))}                                   
                                             </ul>
                                         </div>
@@ -193,7 +193,7 @@ const SearchPage = () => {
                                         <div className="list-block vrste-obroka">
                                             <ul className="list-block-container">
                                                 {vrste_obroka && (vrste_obroka.map((item)=> {
-                                                    return <li key={item.name}><a className={selectedVrstaObroka === item.name ? 'active' : ''} href={''} onClick={(e) => {e.preventDefault(); setSelectedVrstaObroka(item.name);}}>{item.name}</a></li>;                                                   
+                                                    return <li key={item.name}><a className={selectedVrstaObroka === item.name ? 'active' : ''} href={''} onClick={(e) => {e.preventDefault(); setSelectedVrstaObroka(selectedVrstaObroka === item.name ? null : item.name);}}>{item.name}</a></li>;                                                   
                                                 }))}
                                             </ul>
                                         </div>
@@ -229,11 +229,14 @@ const SearchPage = () => {
                             </div>
                         ))
                     }  
-                    
-                    <div className="recepti-display-grid"> 
-                                <ReceptDisplay recepti={thisPageItems} />
-                                <Pagination niz={listaRecepata} setThisPageItems={setThisPageItems}/>
-                    </div> 
+                    {
+                        parametri===null && (
+                            <div className="recepti-display-grid"> 
+                                        <ReceptDisplay recepti={thisPageItems} />
+                                        <Pagination niz={listaRecepata} setThisPageItems={setThisPageItems}/>
+                            </div> 
+                        )
+                    }
                 </div>
             </div>
         </div>

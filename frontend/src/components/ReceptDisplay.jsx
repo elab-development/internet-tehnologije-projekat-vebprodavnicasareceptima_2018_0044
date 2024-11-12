@@ -20,7 +20,7 @@ const ReceptDisplay = ({recepti}) => {
           const recept_img = recepti_list.find(recept => recept.id === item.id);
           return (
             (
-                <ReceptCard key={index} id={item.id} name={item.naziv} description={item.opis} prep_time={item.vreme_pripreme} imgSrc={recept_img.recept_image || assets.logo}/>
+                <ReceptCard key={index} id={item.id} name={item.naziv} description={item.opis} prep_time={item.vreme_pripreme} imgSrc={recept_img?.recept_image || assets.logo}/>
               ))})}
       </div>
     </div>
