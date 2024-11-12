@@ -163,9 +163,9 @@ const AdminPage = () => {
           });
     }
 
-    // if(userRole!=='admin'){
-    //     return <p>Ne mozete pristupiti ovoj stranici</p>
-    // }
+    if(userRole!=='admin'){
+        return <p>Ne mozete pristupiti ovoj stranici</p>
+    }
 
   return (
     <div className="admin-panel-page">
