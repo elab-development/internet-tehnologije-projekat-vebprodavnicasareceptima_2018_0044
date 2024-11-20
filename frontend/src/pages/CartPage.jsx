@@ -71,15 +71,20 @@ const CartPage = () => {
         <button className='btn-remove-all' onClick={handleRemoveAllClick}>Isprazni korpu</button>
       </div>
       <div className="cart-bottom">
-        <div>
-          <CouponInput setCouponTotal={setCouponTotal}/>
-        </div>
         <div className="cart-total">
+        <div className='coupon-container'>
+            <CouponInput setCouponTotal={setCouponTotal}/>
+        </div>
           <h2>Ukupan iznos:</h2>
           <div>
             <div className="cart-total-details">
               <p>Cena hrane</p>
               <p>{getTotalCartAmount()} RSD</p>
+            </div>
+            <hr />
+            <div className="cart-total-details">
+              <p>Popust</p>
+              <p>{couponTotal} RSD</p>
             </div>
             <hr />
             <div className="cart-total-details">
@@ -89,7 +94,7 @@ const CartPage = () => {
             <hr />
             <div className="cart-total-details">
               <b>Ukupno</b>
-              <b>{getTotalCartAmount()+250} RSD</b>
+              <b>{getTotalCartAmount()+250-couponTotal} RSD</b>
             </div>
           </div>
           <button onClick={handleKupiClick}>Kupi</button>

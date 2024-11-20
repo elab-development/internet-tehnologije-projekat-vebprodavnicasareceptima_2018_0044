@@ -32,9 +32,10 @@
 .cart-bottom{
     margin-top: 80px;
     display: flex;
-    justify-content: right;
+    justify-content:right;
     gap: max(12vw,20px);
 }
+
 
 .cart-total{
     
@@ -58,7 +59,7 @@
     border: none;
     color: white;
     background-color: aquamarine;
-    width: max(15vw,200px);
+    width: max(15vw,330px);
     padding: 12px 0px;
     border-radius: 4px;
     cursor: pointer;
@@ -116,6 +117,9 @@
     }
     .btn-remove-container{
         justify-content: center;
+    }
+    .cart-total button{
+        width: max(15vw,200px);   
     }
 }
 

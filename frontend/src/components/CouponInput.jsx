@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react'
+import './CouponInput.css'
 import axios from 'axios';
 import { StoreContext } from '../context/StoreContext';
 
@@ -18,23 +19,26 @@ const CouponInput = ({setCouponTotal}) => {
                 metadata: {  }
             });
             console.log('Coupon Initialized:', response.data);
-            setCouponTotal(response.data.data.total)
+            setCouponTotal(response.data.data.discount)
             setMessage("Ostvarili ste popust od 10%.")
         } catch (error) {
           console.error('Error applying coupon:', error);
+          setCouponTotal(0)
           setMessage("Kupon nije odobren.")
         }
     };
 
   return (
-        <div>
+        <div className='coupon-container'>
+            <div className="coupon-input">
             <input
                 type="text"
-                placeholder="Enter coupon code"
+                placeholder="Upisi kod"
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value)}
             />
-            <button onClick={applyCoupon}>Validate</button>
+            <button onClick={applyCoupon}>Iskoristi kod</button>
+            </div>
             <p>{message}</p>
         </div>
   )
