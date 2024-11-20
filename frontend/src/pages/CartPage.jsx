@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './Cart.css'
 import { StoreContext } from '../context/StoreContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import CouponInput from '../components/CouponInput'
 
 const CartPage = () => {
   const {cartItems, removeFromCart, getTotalCartAmount, userRole, token,setCartItems} =useContext(StoreContext);
+  const [couponTotal, setCouponTotal] = useState(0)
   let navigate=useNavigate()
 
   function handleKupiClick(){
@@ -69,6 +71,9 @@ const CartPage = () => {
         <button className='btn-remove-all' onClick={handleRemoveAllClick}>Isprazni korpu</button>
       </div>
       <div className="cart-bottom">
+        <div>
+          <CouponInput setCouponTotal={setCouponTotal}/>
+        </div>
         <div className="cart-total">
           <h2>Ukupan iznos:</h2>
           <div>

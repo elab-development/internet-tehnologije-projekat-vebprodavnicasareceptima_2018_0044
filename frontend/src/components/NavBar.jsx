@@ -9,7 +9,7 @@ import { StoreContext } from '../context/StoreContext';
 
 const NavBar = () => {
     
-  const navigate = useNavigate();
+    const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const{token,removeToken,userRole,removeUserRole} = useContext(StoreContext)
 

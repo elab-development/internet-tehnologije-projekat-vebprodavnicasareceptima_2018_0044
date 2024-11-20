@@ -24,9 +24,6 @@ const RegisterPage = () => {
       .catch((error)=>{
         console.log(error);
       });
-      console.log("Name:", name)
-      console.log("Email:", email);
-      console.log("Password:", password);
     };
   return (
     <section className="vh-120 gradient-custom" style={{ backgroundColor: "#6a11cb" }}>

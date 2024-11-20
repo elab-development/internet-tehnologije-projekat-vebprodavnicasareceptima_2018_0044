@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'kuponify' => [
+    'base_url' => 'https://api.kuponify.io',
+    'api_token' => env('KUPONIFY_API_TOKEN'),
+    ],
+
+
 ];

@@ -12,7 +12,6 @@ const ReceptPage = () => {
     const{recepti_list,updateCartItems,userRole,token} = useContext(StoreContext);
 
     useEffect(() => {
-        console.log("Rola "+userRole)
         const fetchData = async () => {
             try {
                 const response = await axios.get(`/api/recepti/${id}`, {

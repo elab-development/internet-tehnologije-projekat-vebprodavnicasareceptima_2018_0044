@@ -33,8 +33,6 @@ const LoginPage = () => {
       .catch((error)=>{
         console.log(error);
       });
-      console.log("Email:", email);
-      console.log("Password:", password);
     };
     return (
         <section className="vh-110 gradient-custom" style={{ backgroundColor: "#6a11cb" }}>

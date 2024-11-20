@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\KorpaController;
 use App\Http\Controllers\KuhinjaController;
 use App\Http\Controllers\ReceptController;
@@ -27,7 +28,8 @@ Route::get('recepti/{id}/sastojci', [ReceptController::class, 'getSastojci']);
 Route::get('/recepti/sastojak/{sastojakId}', [ReceptController::class, 'getReceptiBySastojak']);
 Route::get('/recept/pretraga', [ReceptController::class, 'pretraziPoNazivu']);
 Route::get('/sastojak/pretraga', [SastojakController::class, 'pretraziPoNazivu']);
-
+Route::post('/coupon/initialize', [CouponController::class, 'initializeCoupon']);
+Route::post('/coupon/callback', [CouponController::class, 'callbackCoupon']);
 
 
 Route::middleware('guest')->group(function () {
