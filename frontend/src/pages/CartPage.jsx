@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import CouponInput from '../components/CouponInput'
 
 const CartPage = () => {
-  const {cartItems, removeFromCart, getTotalCartAmount, userRole, token,setCartItems} =useContext(StoreContext);
-  const [couponTotal, setCouponTotal] = useState(0)
+  const {cartItems, removeFromCart, getTotalCartAmount, userRole, token,setCartItems,couponTotal} =useContext(StoreContext);
+
   let navigate=useNavigate()
 
   function handleKupiClick(){
     if(getTotalCartAmount()!==0){
-      navigate('/kupovina')
+      navigate('/order')      
     }
   }
 
@@ -73,7 +73,7 @@ const CartPage = () => {
       <div className="cart-bottom">
         <div className="cart-total">
         <div className='coupon-container'>
-            <CouponInput setCouponTotal={setCouponTotal}/>
+            <CouponInput/>
         </div>
           <h2>Ukupan iznos:</h2>
           <div>

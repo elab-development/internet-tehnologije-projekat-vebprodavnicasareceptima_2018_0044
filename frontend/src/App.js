@@ -11,6 +11,7 @@ import CartPage from './pages/CartPage';
 import SearchPage from './pages/SearchPage';
 import ThankYouPage from './pages/ThankYouPage';
 import AdminPage from './pages/AdminPage';
+import OrderPage from './pages/OrderPage';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/filter' element={<SearchPage />}/>
         <Route path='/kupovina' element={<ThankYouPage/>}/>
         <Route path='/admin' element={<AdminPage/>}/>
+        <Route path='/order' element={<OrderPage/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

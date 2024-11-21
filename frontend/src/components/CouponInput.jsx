@@ -3,9 +3,9 @@ import './CouponInput.css'
 import axios from 'axios';
 import { StoreContext } from '../context/StoreContext';
 
-const CouponInput = ({setCouponTotal}) => {
+const CouponInput = () => {
 
-    const {getTotalCartAmount} = useContext(StoreContext)
+    const {getTotalCartAmount,setCouponTotal} = useContext(StoreContext)
     const [couponCode, setCouponCode] = useState('');
     const [message, setMessage] = useState('');
 

@@ -90,9 +90,11 @@ const StoreContextProvider = (props) => {
 
     const getTotalCartAmount =() => {
         let totalAmount =0;
-        cartItems.forEach((item) => {
-            totalAmount += item.cena * item.pivot.kolicina;
-        });
+        if (Array.isArray(cartItems)) {
+          cartItems.forEach((item) => {
+              totalAmount += item.cena * item.pivot.kolicina;
+          });
+        }
         return totalAmount;
     }
 
@@ -115,6 +117,8 @@ const StoreContextProvider = (props) => {
           });
      }
 
+     const [couponTotal, setCouponTotal] = useState(0)
+
     const contextValue = {
         recepti_list,
         kategorija_list,
@@ -123,6 +127,7 @@ const StoreContextProvider = (props) => {
         vrste_obroka,
         token,
         userRole,
+        couponTotal,
         addToken,
         removeToken,
         addUserRole,
@@ -132,7 +137,8 @@ const StoreContextProvider = (props) => {
         removeFromCart,
         getTotalCartAmount,
         updateQuantity,
-        updateCartItems
+        updateCartItems,
+        setCouponTotal
     }
     return(
         <StoreContext.Provider value={contextValue}>
