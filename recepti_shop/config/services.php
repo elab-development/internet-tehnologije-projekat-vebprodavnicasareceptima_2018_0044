@@ -36,5 +36,10 @@ return [
     'api_token' => env('KUPONIFY_API_TOKEN'),
     ],
 
+    'stripe' => [
+    'key' => env('STRIPE_KEY'),
+    'secret' => env('STRIPE_SECRET'),
+],
+
 
 ];

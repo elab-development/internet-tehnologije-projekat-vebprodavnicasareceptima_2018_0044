@@ -6,6 +6,7 @@ use App\Http\Controllers\KorpaController;
 use App\Http\Controllers\KuhinjaController;
 use App\Http\Controllers\ReceptController;
 use App\Http\Controllers\SastojakController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::get('/recept/pretraga', [ReceptController::class, 'pretraziPoNazivu']);
 Route::get('/sastojak/pretraga', [SastojakController::class, 'pretraziPoNazivu']);
 Route::post('/coupon/initialize', [CouponController::class, 'initializeCoupon']);
 Route::post('/coupon/callback', [CouponController::class, 'callbackCoupon']);
+Route::post('/checkout', [StripeController::class, 'checkout']);
 
 
 Route::middleware('guest')->group(function () {
