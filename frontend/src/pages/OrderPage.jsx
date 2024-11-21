@@ -3,12 +3,12 @@ import './OrderPage.css'
 import { StoreContext } from '../context/StoreContext'
 
 const OrderPage = () => {
-    const {getTotalCartAmount,couponTotal} = useContext(StoreContext)
+    const {getTotalCartAmount,couponTotal, userRole} = useContext(StoreContext)
 
     function handleCheckoutClick(){
 
     }
-
+ //dodaj return za proveru role 
   return (
     <form action="" className="place-order">
         <div className="place-order-left">
