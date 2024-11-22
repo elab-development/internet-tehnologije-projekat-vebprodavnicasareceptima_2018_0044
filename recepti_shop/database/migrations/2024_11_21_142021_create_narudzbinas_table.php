@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('ime');
             $table->string('prezime');
-            $table->string('e-mail');
+            $table->string('email');
             $table->string('grad');
             $table->string('postanski_broj');
             $table->string('adresa');

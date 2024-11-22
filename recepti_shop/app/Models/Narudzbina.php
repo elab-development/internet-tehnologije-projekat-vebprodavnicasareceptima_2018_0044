@@ -14,7 +14,7 @@ class Narudzbina extends Model
         'user_id',
         'ime',
         'prezime',
-        'e-mail',
+        'email',
         'grad',
         'postanski_broj',
         'adresa',
@@ -23,6 +23,8 @@ class Narudzbina extends Model
         'status',
     ];
     
+    protected $hidden = ['stavkeNarudzbine']; 
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

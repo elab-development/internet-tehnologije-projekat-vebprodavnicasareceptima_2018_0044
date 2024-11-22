@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('stavke_narudzbine', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('narudzbina_id')->constrained()->onDelete('cascade');
-            $table->foreignId('sastojak_id')->constrained()->onDelete('cascade');
+            $table->foreignId('narudzbina_id')->constrained('narudzbine')->onDelete('cascade');
+            $table->foreignId('sastojak_id')->constrained('sastojci')->onDelete('cascade');
             $table->integer('kolicina');
             $table->integer('cena');
             $table->timestamps();

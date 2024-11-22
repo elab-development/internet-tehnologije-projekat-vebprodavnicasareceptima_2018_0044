@@ -4,8 +4,10 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\KorpaController;
 use App\Http\Controllers\KuhinjaController;
+use App\Http\Controllers\NarudzbinaController;
 use App\Http\Controllers\ReceptController;
 use App\Http\Controllers\SastojakController;
+use App\Http\Controllers\StavkaNarudzbineController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -43,6 +45,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
     Route::apiResource('recepti', ReceptController::class)->except(['show','index']);
     Route::put('kuhinje/{id}', [KuhinjaController::class, 'update']);
+    Route::patch('/narudzbine/{id}/status', [NarudzbinaController::class, 'updateStatus']);
+    Route::get('/narudzbine', [NarudzbinaController::class, 'index']);
+    Route::get('/narudzbine/{id}', [NarudzbinaController::class, 'show']);
+    Route::delete('/stavke-narudzbine/{id}', [StavkaNarudzbineController::class, 'destroy']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -51,6 +57,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('/narudzbine', [NarudzbinaController::class, 'store']);
+    Route::post('/stavke-narudzbine', [StavkaNarudzbineController::class, 'storeMultiple']);
+    Route::get('/stavke-narudzbine/narudzbina/{narudzbinaId}', [StavkaNarudzbineController::class, 'indexByOrder']);
+
 });
 
 Route::middleware('auth:sanctum', 'role:user')->group(function () {
@@ -61,6 +71,7 @@ Route::middleware('auth:sanctum', 'role:user')->group(function () {
     Route::delete('korpa/isprazni', [KorpaController::class, 'isprazniKorpu']);
     Route::post('korpa/recept/{receptId}', [ReceptController::class, 'dodajReceptUKorpu'])
      ->name('korpa.dodajRecept');
+
 });
 
 

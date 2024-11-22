@@ -22,4 +22,9 @@ class Sastojak extends Model
     {
         return $this->belongsToMany(Korpa::class, 'korpa_sastojak')->withPivot('kolicina');
     }
+
+    public function stavkeNarudzbine()
+    {
+        return $this->hasMany(StavkaNarudzbine::class, 'sastojak_id');
+    }
 }

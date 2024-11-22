@@ -65,5 +65,10 @@ use Laravel\Sanctum\HasApiTokens;
             return $this->hasOne(Korpa::class);
         }
 
+        public function narudzbina()
+        {
+            return $this->hasMany(Narudzbina::class, 'user_id');
+        }
+
     }
 
