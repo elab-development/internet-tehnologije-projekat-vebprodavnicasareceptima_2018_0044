@@ -26,7 +26,24 @@ class ReceptController extends Controller
      */
     public function store(Request $request)
     {
-        $recept = Recept::create($request->all());
+        $validated = $request->validate([
+            'naziv' => 'required|string|max:255',
+            'opis' => 'required|string',
+            'vreme_pripreme' => 'required|integer',
+            'broj_porcija' => 'required|integer',
+            'nacin_pripreme' => 'required|string',
+            'vrsta_obroka' => 'required|string',
+            'kategorija_id' => 'required|integer|exists:kategorije,id',
+            'kuhinja_id' => 'required|integer|exists:kuhinje,id',
+            'slika' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('slika')) {
+            $validated['slika'] = $request->file('slika')->store('images', 'public');
+        }
+
+        $recept = Recept::create($validated);
+
         return new ReceptResource($recept);
     }
 

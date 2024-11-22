@@ -30,6 +30,7 @@ class ReceptResource extends JsonResource
                 'id' => $this->kuhinja->id,
                 'naziv' => $this->kuhinja->naziv,
             ] : null,
+            'slika' => $this->slika ? asset('storage/' . $this->slika) : null, //URL se upisuje
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

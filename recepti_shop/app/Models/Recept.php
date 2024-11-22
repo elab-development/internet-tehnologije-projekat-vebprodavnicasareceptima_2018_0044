@@ -10,7 +10,7 @@ class Recept extends Model
     use HasFactory;
 
     protected $fillable = ['naziv', 'opis','vreme_pripreme', 'broj_porcija', 'nacin_pripreme','vrsta_obroka',
-    'kategorija_id', 'kuhinja_id'];
+    'kategorija_id', 'kuhinja_id', 'slika'];
     protected $table = 'recepti';
 
    public function kategorija()

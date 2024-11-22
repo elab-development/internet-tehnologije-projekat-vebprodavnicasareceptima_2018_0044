@@ -16,7 +16,15 @@ const AdminPage = () => {
     const [vrstaObroka, setVrstaObroka] = useState("");
     const [kategorijaId, setKategorijaId] = useState(1);
     const [kuhinjaId, setKuhinjaId] = useState(1);
+    const [image, setImage] = useState(null);
 
+    const handleImageChange = (event) => {
+        const file = event.target.files[0]; 
+        console.log("Selected file:", file);
+        if (file) {
+          setImage(file);
+        }
+      };
 
     function handleClick(event){
         event.preventDefault();
@@ -64,23 +72,27 @@ const AdminPage = () => {
     }
 
     function addRecept(){
-        const data = {
-            naziv: naziv,
-            opis: opis,
-            vreme_pripreme: vreme,
-            broj_porcija: porcija,
-            nacin_pripreme: nacinPripreme,
-            vrsta_obroka: vrstaObroka,
-            kategorija_id: kategorijaId,
-            kuhinja_id: kuhinjaId
+        const formData = new FormData();
+        formData.append("naziv", naziv);
+        formData.append("opis", opis);
+        formData.append("vreme_pripreme", vreme);
+        formData.append("broj_porcija", porcija);
+        formData.append("nacin_pripreme", nacinPripreme);
+        formData.append("vrsta_obroka", vrstaObroka);
+        formData.append("kategorija_id", kategorijaId);
+        formData.append("kuhinja_id", kuhinjaId);
+
+        if (image) {
+            formData.append("slika", image); 
         }
         let config = {
             method: 'post',
             url: 'http://127.0.0.1:8000/api/recepti',
             headers: { 
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
             },
-            data : data
+            data : formData
           };
           
           axios.request(config)
@@ -94,6 +106,7 @@ const AdminPage = () => {
             setVrstaObroka("")
             setKategorijaId(1)
             setKuhinjaId(1)
+            setImage(null)
             setResponseText("Recept je uspesno dodat.")
           })
           .catch((error) => {
@@ -163,9 +176,9 @@ const AdminPage = () => {
           });
     }
 
-    if(userRole!=='admin'){
-        return <p>Ne mozete pristupiti ovoj stranici</p>
-    }
+    // if(userRole!=='admin'){
+    //     return <p>Ne mozete pristupiti ovoj stranici</p>
+    // }
 
   return (
     <div className="admin-panel-page">
@@ -254,6 +267,14 @@ const AdminPage = () => {
                                                 onChange={(e) => setKuhinjaId(e.target.value)} />
                                         </div>
                                     </div>
+                                    {selected===2 && (<div className="label-input-group">
+                                        <label htmlFor="recept-dodaj-sliku">Slika recepta: </label>
+                                        <input className='recept-file'
+                                            type="file" 
+                                            id="recept-dodaj-sliku" 
+                                            onChange={handleImageChange} 
+                                        />
+                                    </div>)}
                                     <input className='admin-form-submit'type="submit" value="Posalji" ></input>
                                 </form>
                             </div>
