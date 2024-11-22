@@ -95,9 +95,9 @@ const OrderPage = () => {
       }
     }
     
-    // if (userRole !== 'user') {
-    //   return <p>Nemate dozvolu za pristup ovoj stranici.</p>;
-    // }
+    if (userRole !== 'user') {
+      return <p>Nemate dozvolu za pristup ovoj stranici.</p>;
+    }
  
   return (
     <form action="" className="place-order">

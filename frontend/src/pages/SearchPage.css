@@ -159,6 +159,21 @@
     padding: 3px;
 }
 
+.search-sort .summary{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.sort-dropdown{
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(108, 174, 152);
+    outline-color: rgb(29, 122, 91);
+    padding: 2px 5px;
+    max-width: max(13vw,140px);
+}
+
 @media (max-width:550px) {
     .main-page-container{
         display: flex;
@@ -166,3 +181,5 @@
         gap: 60px;
     }
 }
+
+

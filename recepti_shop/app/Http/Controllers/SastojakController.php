@@ -69,10 +69,41 @@ class SastojakController extends Controller
     public function pretraziPoNazivu(Request $request)
     {
         $naziv = $request->input('naziv');
-        $sastojci = DB::select("SELECT * FROM sastojci WHERE naziv LIKE ?", ["%$naziv%"]);
-        
+        $sort = $request->input('sort');
+    
+        //default
+        $orderColumn = 'naziv';
+        $orderDirection = 'asc';
+    
+        if ($sort) {
+            switch ($sort) {
+                case 'naziv_asc':
+                    $orderColumn = 'naziv';
+                    $orderDirection = 'asc';
+                    break;
+                case 'naziv_desc':
+                    $orderColumn = 'naziv';
+                    $orderDirection = 'desc';
+                    break;
+                case 'datum_desc':
+                    $orderColumn = 'created_at'; 
+                    $orderDirection = 'desc';
+                    break;
+                case 'datum_asc':
+                    $orderColumn = 'created_at'; 
+                    $orderDirection = 'asc';
+                    break;
+            }
+        }
+    
+        $sastojci = DB::select(
+            "SELECT * FROM sastojci WHERE naziv LIKE ? ORDER BY $orderColumn $orderDirection",
+            ["%$naziv%"]
+        );
+    
         return response()->json(['status' => 'success', 'data' => $sastojci]);
     }
+    
 
 
 }

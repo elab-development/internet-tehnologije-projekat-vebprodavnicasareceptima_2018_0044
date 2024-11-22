@@ -32,7 +32,8 @@ const SearchPage = () => {
     const [selectedVrstaObroka, setSelectedVrstaObroka] = useState(null);
     
 
-    //Pretraga
+
+    //Pretraga i sortiranje
       let navigate = useNavigate();
       const [searchQuery, setSearchQuery] = useState('');
       const handleSearchClick = () => {
@@ -41,7 +42,9 @@ const SearchPage = () => {
           setSearchQuery('');
         }
     }; 
+    
     const location = useLocation();
+    const [sortBy, setSortBy] = useState('');
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -51,23 +54,34 @@ const SearchPage = () => {
         if (naziv) {
             const fetchPodaciPretrage = async () => {
                 try {
-                    if(selectedRadio==='sastojak'){
-                        const response = await axios.get(`/api/sastojak/pretraga?naziv=${naziv}`);
-                        setSastojci(response.data.data);
-                        console.log(response.data)
-                    } else{
-                        const response = await axios.get(`/api/recept/pretraga?naziv=${naziv}`);
-                        setlistaRecepata(response.data.data);
-                        console.log(response.data)
+                    let url = '';
+                    if (selectedRadio === 'sastojak') {
+                        url = `/api/sastojak/pretraga?naziv=${naziv}`;
+                    } else {
+                        url = `/api/recept/pretraga?naziv=${naziv}`;
                     }
+    
+                    if (sortBy) {
+                        url += `&sort=${sortBy}`;
+                    }
+    
+                    const response = await axios.get(url);
+    
+                    if (selectedRadio === 'sastojak') {
+                        setSastojci(response.data.data);
+                    } else {
+                        setlistaRecepata(response.data.data);
+                    }
+    
+                    console.log(response.data);
                 } catch (error) {
-                    console.error("Greška pri preuzimanju sastojaka:", error);
+                    console.error("Greška pri preuzimanju podataka:", error);
                 }
             };
 
             fetchPodaciPretrage();
         }
-    }, [location.search]);
+    }, [location.search,sortBy,selectedRadio]);
 
     useEffect(() => {
         setParametri(null);
@@ -146,6 +160,21 @@ const SearchPage = () => {
                                                 <input type="text" className='search-box' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
                                                 <BiSearch className='search-icon' onClick={handleSearchClick}/>
                                             </div>
+                                            <div className="search-sort">
+                                                <div className="summary ">
+                                                    <span>Sortiraj po</span>
+                                                    <select 
+                                                        className="sort-dropdown" 
+                                                        onChange={(e) => setSortBy(e.target.value)} 
+                                                        value={sortBy}>
+                                                        <option value="">Izaberite:</option>
+                                                        <option value="naziv_asc">Naziv (A-Z)</option>
+                                                        <option value="naziv_desc">Naziv (Z-A)</option>
+                                                        <option value="datum_desc">Najnoviji</option>
+                                                        <option value="datum_asc">Najstariji</option>
+                                                    </select>
+                                                </div>
+                                            </div>                                               
                                         </div>
                                     </div>
                                 </div>
@@ -230,7 +259,7 @@ const SearchPage = () => {
                         ))
                     }  
                     {
-                        parametri===null && (
+                        parametri===null  && selectedRadio === 'sastojak' && (
                             <div className="recepti-display-grid"> 
                                         <ReceptDisplay recepti={thisPageItems} />
                                         <Pagination niz={listaRecepata} setThisPageItems={setThisPageItems}/>
