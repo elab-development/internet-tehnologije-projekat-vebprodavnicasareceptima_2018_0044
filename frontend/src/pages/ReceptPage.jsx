@@ -10,6 +10,7 @@ const ReceptPage = () => {
     const { id } = useParams(); // Uzima ID iz URL-a
     const [recept, setRecept] = useState(null);
     const{recepti_list,updateCartItems,userRole,token} = useContext(StoreContext);
+    const baseUrl = "http://localhost:8000/storage/";
 
     useEffect(() => {
         const fetchData = async () => {
@@ -64,7 +65,6 @@ const ReceptPage = () => {
           });
      }
 
-
     if (!recept) {
         return <p>Učitavanje...</p>;
     }
@@ -73,7 +73,7 @@ const ReceptPage = () => {
         <div className='recept-page'>
             <div className="container-top">            
                 <div className="container-left ">
-                        <img src={recepti_list?.[id-1]?.recept_image || assets.logo} alt="" />                    
+                        <img src={recept?.slika || recepti_list?.[id-1]?.recept_image || assets.logo} alt="" />                    
                 </div>
                 <div className="container-right">
                     <h2>{recept.naziv}</h2>
