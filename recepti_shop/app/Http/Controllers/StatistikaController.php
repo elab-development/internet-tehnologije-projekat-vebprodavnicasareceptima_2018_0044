@@ -12,8 +12,7 @@ class StatistikaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'sastojak_id' => 'required|exists:sastojci,id',
-            'kolicina' => 'required|integer|min:1',
+            'sastojak_id' => 'required|exists:sastojci,id'
         ]);
 
         $userId = Auth::id();
@@ -24,10 +23,10 @@ class StatistikaController extends Controller
                 'sastojak_id' => $validated['sastojak_id'],
             ],
             [
-                'kolicina' => DB::raw("kolicina + {$validated['kolicina']}"),
+                'kolicina' => DB::raw("kolicina + 1"),
             ]
         );
-        
+
         return response()->json([
             'message' => 'Statistika uspešno dodata ili ažurirana.',
             'data' => $statistika

@@ -8,12 +8,13 @@ import { StoreContext } from '../context/StoreContext';
 
 const SastojakCard = ({id,name,unit, imgSrc, price, oznacen, addOznacenSastojak}) => {
 
-  const {cartItems,addToCart,removeFromCart,updateQuantity,token,userRole} = useContext(StoreContext);
+  const {cartItems,addToCart,removeFromCart,updateQuantity,addKorpaStats,token,userRole} = useContext(StoreContext);
   const item = Array.isArray(cartItems) ? cartItems.find((sastojak) => sastojak.id === id) : null;
 
   function handlePlusClick(id){
     const item = cartItems.find((sastojak) => sastojak.id === id);
     updateQuantity(id,item.pivot.kolicina+1)
+    addKorpaStats(id)
   }
 
   function handleRemoveFromCart(id){

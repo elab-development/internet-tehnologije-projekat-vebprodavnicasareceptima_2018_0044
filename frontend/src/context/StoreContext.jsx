@@ -116,8 +116,22 @@ const StoreContextProvider = (props) => {
             console.log(error);
           });
      }
+    //statistika za korpe
+    function addKorpaStats(postData){
+      axios.post('http://localhost:8000/api/statistika', postData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } 
 
-     const [couponTotal, setCouponTotal] = useState(0)
+    const [couponTotal, setCouponTotal] = useState(0)
 
     const contextValue = {
         recepti_list,
@@ -138,7 +152,8 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
         updateQuantity,
         updateCartItems,
-        setCouponTotal
+        setCouponTotal,
+        addKorpaStats
     }
     return(
         <StoreContext.Provider value={contextValue}>
