@@ -7,6 +7,7 @@ use App\Http\Controllers\KuhinjaController;
 use App\Http\Controllers\NarudzbinaController;
 use App\Http\Controllers\ReceptController;
 use App\Http\Controllers\SastojakController;
+use App\Http\Controllers\StatistikaController;
 use App\Http\Controllers\StavkaNarudzbineController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
@@ -34,6 +35,7 @@ Route::get('/sastojak/pretraga', [SastojakController::class, 'pretraziPoNazivu']
 Route::post('/coupon/initialize', [CouponController::class, 'initializeCoupon']);
 Route::post('/coupon/callback', [CouponController::class, 'callbackCoupon']);
 Route::post('/checkout', [StripeController::class, 'checkout']);
+Route::post('/statistika', [StatistikaController::class, 'store']);
 
 
 Route::middleware('guest')->group(function () {
@@ -49,6 +51,7 @@ Route::middleware('auth:sanctum', 'role:admin')->group(function () {
     Route::get('/narudzbine', [NarudzbinaController::class, 'index']);
     Route::get('/narudzbine/{id}', [NarudzbinaController::class, 'show']);
     Route::delete('/stavke-narudzbine/{id}', [StavkaNarudzbineController::class, 'destroy']);
+    Route::get('/statistika/sastojci', [StatistikaController::class, 'najcesceDodavaniSastojci']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

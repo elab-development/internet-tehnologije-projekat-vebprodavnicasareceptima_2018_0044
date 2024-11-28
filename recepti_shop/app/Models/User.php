@@ -70,5 +70,11 @@ use Laravel\Sanctum\HasApiTokens;
             return $this->hasMany(Narudzbina::class, 'user_id');
         }
 
+        public function statistikeKorpe()
+        {
+            return $this->hasMany(StatistikaKorpe::class);
+        }
+
+
     }
 
