@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\StatistikaKorpe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class StatistikaController extends Controller
@@ -11,21 +12,22 @@ class StatistikaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'sastojak_id' => 'required|exists:sastojci,id',
             'kolicina' => 'required|integer|min:1',
         ]);
 
+        $userId = Auth::id();
+
         $statistika = StatistikaKorpe::updateOrCreate(
             [
-                'user_id' => $validated['user_id'],
-                'sastojak_id' => $validated['sastojak_id']
+                'user_id' => $userId,
+                'sastojak_id' => $validated['sastojak_id'],
             ],
             [
-                'kolicina' => DB::raw("kolicina + {$validated['kolicina']}")
+                'kolicina' => DB::raw("kolicina + {$validated['kolicina']}"),
             ]
         );
-
+        
         return response()->json([
             'message' => 'Statistika uspešno dodata ili ažurirana.',
             'data' => $statistika

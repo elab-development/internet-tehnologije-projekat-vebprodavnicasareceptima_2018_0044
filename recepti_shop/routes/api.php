@@ -35,7 +35,7 @@ Route::get('/sastojak/pretraga', [SastojakController::class, 'pretraziPoNazivu']
 Route::post('/coupon/initialize', [CouponController::class, 'initializeCoupon']);
 Route::post('/coupon/callback', [CouponController::class, 'callbackCoupon']);
 Route::post('/checkout', [StripeController::class, 'checkout']);
-Route::post('/statistika', [StatistikaController::class, 'store']);
+
 
 
 Route::middleware('guest')->group(function () {
@@ -74,7 +74,7 @@ Route::middleware('auth:sanctum', 'role:user')->group(function () {
     Route::delete('korpa/isprazni', [KorpaController::class, 'isprazniKorpu']);
     Route::post('korpa/recept/{receptId}', [ReceptController::class, 'dodajReceptUKorpu'])
      ->name('korpa.dodajRecept');
-
+    Route::post('/statistika', [StatistikaController::class, 'store']);
 });
 
 
