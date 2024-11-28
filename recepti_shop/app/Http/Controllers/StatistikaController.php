@@ -12,10 +12,13 @@ class StatistikaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'sastojak_id' => 'required|exists:sastojci,id'
+            'sastojak_id' => 'required|exists:sastojci,id',
+            'kolicina' => 'nullable|numeric|min:1'
         ]);
 
         $userId = Auth::id();
+        
+        $kolicina = $validated['kolicina'] ?? 1;
 
         $statistika = StatistikaKorpe::updateOrCreate(
             [
@@ -23,7 +26,7 @@ class StatistikaController extends Controller
                 'sastojak_id' => $validated['sastojak_id'],
             ],
             [
-                'kolicina' => DB::raw("kolicina + 1"),
+                'kolicina' => DB::raw("kolicina + $kolicina"),
             ]
         );
 

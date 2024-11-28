@@ -117,18 +117,31 @@ const StoreContextProvider = (props) => {
           });
      }
     //statistika za korpe
-    function addKorpaStats(postData){
-      axios.post('http://localhost:8000/api/statistika', postData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
+    function addKorpaStats(sastojakId, kolicina){
+      const postData = {
+        sastojak_id: sastojakId,
+        kolicina: kolicina
+      };
+      
+      let config = {
+        method: 'post',
+        url: 'http://localhost:8000/api/statistika',
+        headers: { 
+          Authorization: `Bearer ${token}`
+        },
+        data : postData
+      };
+      
+      axios.request(config)
+      .then((response) => {
+        console.log("Dodato "+ sastojakId);
       })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .catch((error) => {
+        if (error.response) {
+          console.log('Server response:', error.response.data); //Ovako mogu da bolje vidim poruku sa servera
+        }
+        console.log(error);
+      });
     } 
 
     const [couponTotal, setCouponTotal] = useState(0)

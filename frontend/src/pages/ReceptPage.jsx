@@ -9,7 +9,7 @@ import SastojakDisplay from '../components/SastojakDisplay';
 const ReceptPage = () => {
     const { id } = useParams(); // Uzima ID iz URL-a
     const [recept, setRecept] = useState(null);
-    const{recepti_list,updateCartItems,userRole,token} = useContext(StoreContext);
+    const{recepti_list,updateCartItems,addKorpaStats,userRole,token} = useContext(StoreContext);
     const baseUrl = "http://localhost:8000/storage/";
 
     useEffect(() => {
@@ -63,6 +63,12 @@ const ReceptPage = () => {
           .catch((error) => {
             console.log(error);
           });
+
+          if (receptSastojci) {
+            receptSastojci.forEach(sastojak => {
+                addKorpaStats(sastojak.id, sastojak.pivot.kolicina);
+            });
+        }
      }
 
     if (!recept) {
