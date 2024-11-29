@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import './AdminPage.css'
 import { StoreContext } from '../context/StoreContext'
 import axios from 'axios'
+import NajcesciSastojciChart from '../components/NajcesciSastojciChart'
 
 const AdminPage = () => {
     const[selected,setSelected]=useState(1);
@@ -189,6 +190,7 @@ const AdminPage = () => {
                 <button onClick={()=>setSelected(2)} className={selected === 2 ? 'btn-active' : ''}>Dodaj recept</button>
                 <button onClick={()=>setSelected(3)} className={selected === 3 ? 'btn-active' : ''}>Azuriraj recept</button>
                 <button onClick={()=>setSelected(4)} className={selected === 4 ? 'btn-active' : ''}>Obrisi recept</button>
+                <button onClick={()=>setSelected(5)} className={selected === 5 ? 'btn-active' : ''}>Najcesci sastojci</button>
             </div>
             <div className="admin-panel-form">
                 <div className="admin-panel-form-container">
@@ -292,6 +294,11 @@ const AdminPage = () => {
                                     <input className='admin-form-submit' type="submit" value="Posalji"></input>
                                 </form>
                             </div>
+                        )
+                    }
+                    {
+                        selected ===5 && (
+                            <NajcesciSastojciChart/>
                         )
                     }
                 </div>
