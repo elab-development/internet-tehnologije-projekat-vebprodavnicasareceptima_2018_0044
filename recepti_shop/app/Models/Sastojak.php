@@ -27,6 +27,7 @@ class Sastojak extends Model
     {
         return $this->hasMany(StavkaNarudzbine::class, 'sastojak_id');
     }
+    
     public function statistikeKorpe()
     {
         return $this->hasMany(StatistikaKorpe::class);

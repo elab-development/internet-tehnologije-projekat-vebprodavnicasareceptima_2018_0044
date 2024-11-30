@@ -47,10 +47,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
     Route::apiResource('recepti', ReceptController::class)->except(['show','index']);
     Route::put('kuhinje/{id}', [KuhinjaController::class, 'update']);
-    Route::patch('/narudzbine/{id}/status', [NarudzbinaController::class, 'updateStatus']);
     Route::get('/narudzbine', [NarudzbinaController::class, 'index']);
     Route::get('/narudzbine/{id}', [NarudzbinaController::class, 'show']);
-    Route::delete('/stavke-narudzbine/{id}', [StavkaNarudzbineController::class, 'destroy']);
     Route::get('/statistika/sastojci', [StatistikaController::class, 'najcesceDodavaniSastojci']);
 });
 

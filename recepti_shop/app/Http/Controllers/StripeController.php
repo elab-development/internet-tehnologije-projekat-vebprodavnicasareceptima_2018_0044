@@ -10,7 +10,7 @@ class StripeController extends Controller
 {
     public function checkout(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey('sk_test_51QNYLdEUVwTWIVwdrgkVK9Y1jyiVjCt32VUQzNINxYdQ0yxGgboGoHqLi5N1BfI0rh2jMdA5nlPa3KU3yZOOzVdc00rKzjCRlV');
 
         $YOUR_DOMAIN = 'http://localhost:3000';
 
