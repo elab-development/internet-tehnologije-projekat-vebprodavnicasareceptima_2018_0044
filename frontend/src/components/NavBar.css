@@ -1,0 +1,21 @@
+.navbar .logo{
+    width: 80px;
+}
+
+.nav-link {
+    color:#448475 !important;
+    
+}
+
+.form-control{
+    background-color: #44847534 !important;
+}
+
+.btn{
+    background-color:#05ad86 !important;
+    border: 2px solid #448475
+}
+
+.nav-link{
+    cursor: pointer;
+}

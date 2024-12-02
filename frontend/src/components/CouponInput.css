@@ -1,0 +1,34 @@
+.coupon-input{
+    display: flex;
+    gap: 6px;
+}
+
+.coupon-container input{
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(39, 160, 120, 0.575);
+    font-weight: 500;
+    color: white;
+    padding-left:5px ;
+
+}
+
+.coupon-container button{
+    border: none;
+    color: white;
+    background-color: rgb(17, 183, 133);
+    width: max(8vw,100px);
+    padding: 8px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.coupon-container button:hover{
+    background-color: rgb(36, 233, 174);
+}
+
+@media (max-width:400px){
+    .coupon-container input{
+        width: max(8vw,160px);
+    }
+}

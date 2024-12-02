@@ -1,0 +1,27 @@
+.pagination-container{
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 30px;
+}
+.pagination-container span{
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.pagination-btn{
+    padding: 3px 6px;
+    margin-right: 6px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: rgb(56, 201, 153);
+    border: 2px solid rgb(45, 156, 119);
+}
+
+.pagination-btn.active{
+    background-color:rgb(47, 152, 117) ;
+    border: 3px;
+}

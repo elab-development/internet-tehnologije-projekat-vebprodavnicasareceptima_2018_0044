@@ -1,0 +1,165 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+.recept-page{
+    max-width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    background: white;
+    box-shadow: 5px 5px 10px 3px white;
+}
+.container-top{
+    display: flex;
+    justify-content: space-between;
+}
+.container-left .container-right {
+    /* width: 50%; */
+    max-width: 100%;
+    padding: 30px;
+}
+
+.flex1{
+    display: flex;
+}
+
+.flex2{
+    display: flex;
+    justify-content:space-around;   
+}
+
+.container-left img{
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    
+}
+.container-right{
+    padding: 0px 100px 50px 50px;
+}
+
+h2{
+    color: black;
+    margin: 0px 0 10px 0;
+    font-weight: 700;
+}
+
+h3{
+  color: black;
+  font-weight: 600;
+}
+
+h4{
+    font-size: larger;
+    color: rgb(20, 106, 77);    
+    border-radius: 15px 5px;
+}
+
+p{
+    color: rgb(62, 60, 60);
+    margin: 20px 0 50ox 0;
+    line-height: 25px;
+}
+
+.container-right-tags{
+    justify-content: start;
+    margin-bottom: 1vw;
+    gap: 25px;
+
+}
+
+.container-right-tags button{
+    border: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.5vw 1.5vw;
+    background-color: rgba(68, 167, 125, 0.655);
+    font-size: max(1vw,13px);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.container-right-key-info{
+    margin-bottom: 15px;
+}
+
+.sastojci-list{
+    margin-top: 30px;
+}
+
+.sastojci-list button{
+    border: 1px solid;
+    border-color: rgb(136, 136, 136);
+    color: white;
+    font-weight: 500;
+    padding: 0.5vw 1.5vw;
+    background-color: #05ad86;
+    font-size: max(1vw,13px);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.sastojci-list button:hover{
+    border: 2px solid;
+    background-color: #0dcca0;
+}
+
+@media (max-width:1050px) {
+    /* .container-left .container-right {
+        width: 50%;
+        padding: 30px;
+    } */
+    .container-left img{
+        width: 400px;
+        height: 400px;
+    }
+
+    .container-right{
+        padding: 0px 50px 50px 50px;
+    }
+}
+
+@media (max-width:900px) {
+    .container-left img{
+        width: 350px;
+        height: 350px;
+        margin-top: 100px;
+    }
+}
+
+@media (max-width:850px) {
+    .container-top{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container-left img{
+        width: 400px;
+        height: 400px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+    .recept-page{
+        max-width: 90%;
+    }
+    .container-right{
+        padding: 0px 20px 20px 20px;
+    }
+}
+@media (max-width:450px) {
+
+    .container-left img{
+        width: 290px;
+        height: 290px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+    .recept-page{
+        max-width: 90%;
+    }
+    .container-right{
+        padding: 0px 20px 20px 20px;
+    }
+}
